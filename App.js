@@ -1,11 +1,9 @@
 //SECTOR DE IMPORTACIONES
 import * as React from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, Alert} from 'react-native';
 import  {NavigationContainer, NavigationAction, useNavigation}  from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { AntDesign } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
+
 
 import Inicio from './src/ventanas/Inicio';
 import Calendario from './src/ventanas/agenda/Calendario';
