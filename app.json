@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "proyecto",
-    "slug": "proyecto",
+    "name": "TDD2023",
+    "slug": "TDD2023",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9618b209-755e-41c4-97b6-870e27874dc7"
+      }
+    },
+    "owner": "oskhar-cc"
   }
 }

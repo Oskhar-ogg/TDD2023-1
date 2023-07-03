@@ -1,0 +1,9 @@
+@api = http://localhost:3000/bitacora
+
+GET {{api}}
+###
+GET {{api}}/3
+###
+GET {{api}}/count
+###
+POST {{{api}}}
