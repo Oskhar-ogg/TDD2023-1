@@ -8,7 +8,6 @@ import styles from '../../../src/componentes/estilos/Estilos';
 import { Card, Text } from '@rneui/themed';
 
 export default function Bitacora() {
-
   const navigation = useNavigation();
 
   const handleInicioPress = () => {
@@ -58,23 +57,22 @@ export default function Bitacora() {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView style={styles.CenterContainer}>
-        <FlatList 
-          data={bitacora}
-          keyExtractor={(item) => item.bitacora_id.toString()}
-          renderItem={({ item }) => (
-            <Card>
-              <Card.Title>{item.bitacora_title}</Card.Title>
-              <Card.Title>{item.bitacora_fecha}</Card.Title>
-              <Text style={{ color: getColor(item.bitacora_estado) }}>{item.bitacora_estado}</Text>
-              <Card.Divider />
-              <Text style={{ color: '#000000', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', fontSize: 16 }}>{item.bitacora_description}</Text>
-              <Card.Divider />
-              <Text style={{ color: '#000000', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', fontSize: 16 }}>${item.bitacora_valor_cobrado}</Text>
-            </Card>
-          )}
-        />
-      </SafeAreaView>
+      <FlatList 
+        data={bitacora}
+        keyExtractor={(item) => item.bitacora_id.toString()}
+        renderItem={({ item }) => (
+          <Card>
+            <Card.Title>{item.bitacora_title}</Card.Title>
+            <Card.Title>{item.bitacora_fecha}</Card.Title>
+            <Text style={{ color: getColor(item.bitacora_estado) }}>{item.bitacora_estado}</Text>
+            <Card.Divider />
+            <Text style={{ color: '#000000', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', fontSize: 16 }}>{item.bitacora_description}</Text>
+            <Card.Divider />
+            <Text style={{ color: '#000000', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', fontSize: 16 }}>${item.bitacora_valor_cobrado}</Text>
+          </Card>
+        )}
+        nestedScrollEnabled={true} // Habilitar desplazamiento interno de FlatList
+      />
       <View style={styles.bottomBar}>
         <TouchableOpacity style={styles.button} onPress={handleInicioPress}>
           <AntDesign name="home" size={24} color="#ffffff" /><Text style={styles.buttonText}>Inicio</Text>
