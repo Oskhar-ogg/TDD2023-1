@@ -8,7 +8,7 @@ export default function Inventario() {
   
 const navigation = useNavigation();
 const handleInicioPress = () => {
-navigation.navigate('Inicio');
+navigation.navigate('MDIAPP V0.8');
 };
 const handleInventarioPress = () => {
 navigation.navigate('Inventario');
@@ -20,26 +20,11 @@ const handleMasPress = () => {
 navigation.navigate('Mas');
 };
 const handleBitacoraPress = () => {
-navigation.navigate('Bitacora');
+navigation.navigate('Bitácora');
 };
 
   return (
     <View style={styles.container}>
-      <View style={styles.topBar}>
-        <Ionicons name="md-water" size={24} color="#ffffff" /><Text style={styles.logo}>MDIBIOBÍO</Text>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() =>Alert.alert('Botón 1')}
-        >
-         <AntDesign name="search1" size={24} color="#ffffff" />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => Alert.alert('Botón 2')}
-        >
-         <AntDesign name="user" size={24} color="#ffffff" />
-        </TouchableOpacity>
-      </View>
       <View style = {styles.CenterContainer}>      
         <Text>PAGINA INVENTARIO FUNCIONANDO</Text>
       </View>

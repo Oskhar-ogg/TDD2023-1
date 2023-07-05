@@ -14,6 +14,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 
 
+
 //SECTOR DE FUNCIONES
 const Tarjeta = () => {
   return (
@@ -34,7 +35,7 @@ export default function Inicio() {
   const navigation = useNavigation();
 
   const handleInicioPress = () => {
-    navigation.navigate('Inicio');
+    navigation.navigate('MDIAPP V0.8');
     };
     const handleInventarioPress = () => {
     navigation.navigate('Inventario');
@@ -46,27 +47,15 @@ export default function Inicio() {
     navigation.navigate('Mas');
     };
     const handleBitacoraPress = () => {
-    navigation.navigate('Bitacora');
+    navigation.navigate('Bitácora');
     };
+    const handleAgregarBitacoraPress = () => {
+      navigation.navigate('Agregar Bitácora');
+      };
 
 
   return (
     <View style={styles.container}>
-      <View style={styles.topBar}>
-        <Ionicons name="md-water" size={24} color="#ffffff" /><Text style={styles.logo}>MDIBIOBÍO</Text>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() =>Alert.alert('Botón 1')}
-        >
-         <AntDesign name="search1" size={24} color="#ffffff" />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => Alert.alert('Botón 2')}
-        >
-         <AntDesign name="user" size={24} color="#ffffff" />
-        </TouchableOpacity>
-      </View>
       <View style={styles.TopContainer}>
         <View style ={styles.imageContainer}>
         <Tarjeta/>
@@ -76,7 +65,7 @@ export default function Inicio() {
         <Text  style={styles.Text2}>Accesos Rápidos</Text>
         <Button style={styles.button}
         title="Agregar Bitácora"
-        onPress={() => Alert.alert('Debe enviar a la ventana de agregar bitácora')}
+        onPress={handleAgregarBitacoraPress}
       />
               <Button style={styles.button}
         title="Subir Archivo_Compras"
@@ -104,7 +93,7 @@ export default function Inicio() {
           style={styles.roundButton1}
           onPress={handleBitacoraPress}
         >
-          <AntDesign name="plus" size={24} color="#ffffff" /><Text style={styles.buttonText}>Bitácora</Text>
+          <AntDesign name="form" size={24} color="#ffffff" /><Text style={styles.buttonText}>Bitácora</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
@@ -127,13 +116,6 @@ export default function Inicio() {
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  },
-  topBar: {
-    backgroundColor: '#08546c',
-    padding: 16,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'baseline',
   },
   logo: {
     fontSize: 20,
