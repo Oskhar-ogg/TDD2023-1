@@ -42,7 +42,7 @@ export const saveBitacora = async (req, res) => {
       'INSERT INTO bitacora (bitacora_title, bitacora_description, bitacora_estado, bitacora_pago, bitacora_valor_cobrado, bitacora_foto, bitacora_fecha) VALUES (?, ?, ?, ?, ?, ?, ?)',
       [req.body.bitacora_title, req.body.bitacora_description, req.body.bitacora_estado, req.body.bitacora_pago, req.body.bitacora_valor_cobrado, req.body.bitacora_foto, req.body.bitacora_fecha]
     );
-
+    
     res.json({
       id: results.insertId,
       ...req.body,
