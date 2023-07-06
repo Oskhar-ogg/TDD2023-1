@@ -9,6 +9,7 @@ import DateTimePickerAndroid from '@react-native-community/datetimepicker';
 
 
 export default function AgregarBitacora() {
+
   const navigation = useNavigation();
 
   const handleInicioPress = () => {
@@ -42,9 +43,9 @@ export default function AgregarBitacora() {
     bitacora_pago: '',
     bitacora_valor_cobrado: '',
     bitacora_foto: '',
-    bitacora_fecha: ''
+    bitacora_fecha: new Date().toISOString().split('T')[0], // Formato yyyy-mm-dd
   });
-
+  
   const handleInputChange = (key, value) => {
     setBitacoraData({ ...bitacoraData, [key]: value });
   };
@@ -70,10 +71,15 @@ export default function AgregarBitacora() {
     setDatePickerVisible(false);
   };
 
-  const handleDateConfirm = (date) => {
+  const handleDateConfirm = (event, selectedDate) => {
+    if (selectedDate) {
+      const year = selectedDate.getFullYear();
+      const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+      const day = String(selectedDate.getDate()).padStart(2, '0');
+      const formattedDate = `${year}-${month}-${day}`;
+      handleInputChange('bitacora_fecha', formattedDate);
+    }
     hideDatePicker();
-    const formattedDate = date.toDateString();
-    handleInputChange('bitacora_fecha', formattedDate);
   };
   
   return (
@@ -110,15 +116,17 @@ export default function AgregarBitacora() {
         value={bitacoraData.bitacora_foto}
         onChangeText={(text) => handleInputChange('bitacora_foto', text)}
       />
-          <TouchableOpacity onPress={showDatePicker}>
+<TouchableOpacity onPress={showDatePicker}>
             <Text>{bitacoraData.bitacora_fecha || 'Fecha'}</Text>
           </TouchableOpacity>
-          <DateTimePickerAndroid
-            isVisible={isDatePickerVisible}
-            mode="date"
-            onConfirm={handleDateConfirm}
-            onCancel={hideDatePicker}
-          />
+          {isDatePickerVisible && (
+            <DateTimePickerAndroid
+              value={new Date()}
+              mode="date"
+              display="default"
+              onChange={handleDateConfirm}
+            />
+          )}
           <Button title="Agregar" onPress={handleAgregarBitacora}/>
         </Card>
       </View>

@@ -82,10 +82,10 @@ const handleAgendaPress = () => {
 navigation.navigate('Agenda');
 };
 const handleMasPress = () => {
-navigation.navigate('Mas');
+navigation.navigate('Más');
 };
 const handleBitacoraPress = () => {
-navigation.navigate('Bitacora');
+navigation.navigate('Bitácora');
 };
 
   return (
