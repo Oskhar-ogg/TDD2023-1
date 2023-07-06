@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import styles from '../../../src/componentes/estilos/Estilos';
 import { AntDesign } from '@expo/vector-icons';
 import { Card, Text } from '@rneui/themed';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import DateTimePickerAndroid from '@react-native-community/datetimepicker';
 
 
 export default function AgregarBitacora() {
@@ -72,9 +72,10 @@ export default function AgregarBitacora() {
 
   const handleDateConfirm = (date) => {
     hideDatePicker();
-    handleInputChange('bitacora_fecha', date.toISOString().split('T')[0]);
+    const formattedDate = date.toDateString();
+    handleInputChange('bitacora_fecha', formattedDate);
   };
-
+  
   return (
     <View style={styles.container}>
       <View style={styles.CenterContainer}>
@@ -112,7 +113,7 @@ export default function AgregarBitacora() {
           <TouchableOpacity onPress={showDatePicker}>
             <Text>{bitacoraData.bitacora_fecha || 'Fecha'}</Text>
           </TouchableOpacity>
-          <DateTimePickerModal
+          <DateTimePickerAndroid
             isVisible={isDatePickerVisible}
             mode="date"
             onConfirm={handleDateConfirm}
