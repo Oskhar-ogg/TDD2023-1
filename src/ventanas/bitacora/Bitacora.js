@@ -1,13 +1,15 @@
+import React, { useEffect, useState }  from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, TouchableOpacity, FlatList} from 'react-native';
+import { View, TouchableOpacity, FlatList, RefreshControl, Alert} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { getBitacora, deleteBitacora } from '../../../api';
-import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../../src/componentes/estilos/Estilos';
 import { Card, Text, Button} from '@rneui/themed';
+import { useIsFocused } from '@react-navigation/native';
 
 export default function Bitacora() {
+
   const navigation = useNavigation();
 
   const handleInicioPress = () => {
@@ -30,7 +32,10 @@ export default function Bitacora() {
     navigation.navigate('Bitácora');
   };
   
+
+  const [refreshing, setRefreshing] = React.useState(false);
   const [bitacora, setBitacora] = useState([]);
+  const isFocused = useIsFocused();
 
   const cargarBitacora = async () => {
     try {
@@ -41,17 +46,36 @@ export default function Bitacora() {
       // Manejar el error de la Promesa aquí, por ejemplo, mostrar un mensaje de error al usuario
     }
   };
-  
-  useEffect(() => {
-    cargarBitacora();
-    handleBitacoraPress();
+
+  const onRefresh = React.useCallback(async () => {
+    setRefreshing(true);
+    await cargarBitacora();
+    setRefreshing(false);
   }, []);
 
   const handleDelete = async (bitacora_id) => {
-      await deleteBitacora(bitacora_id);
-      console.log('Bitacora eliminada correctamente');
-      await handleBitacoraPress();
-  };
+    Alert.alert("Eliminar bitácora", "¿Estás seguro que deseas eliminar esta bitácora?", [
+      {
+        text: "Cancelar",
+        onPress: () => console.log("Cancel Pressed"),
+      },
+      {
+        text: "Eliminar",
+        onPress: async () => {
+          await deleteBitacora(bitacora_id);
+          console.log('Bitacora eliminada correctamente');
+          await cargarBitacora();
+      },
+      },
+    ])
+};
+  
+  useEffect(() => {
+    cargarBitacora();
+   console.log('Bitacora cargada correctamente');
+  }, [isFocused]);
+
+
     
   const getColor = (estado) => {
     if (estado === 'Finalizado') {
@@ -71,7 +95,7 @@ export default function Bitacora() {
         renderItem={({ item }) => (
           <Card>
             <Card.Title>{item.bitacora_title}</Card.Title>
-            <Card.Title>{item.bitacora_fecha}</Card.Title>
+            <Card.Title>{new Date(item.bitacora_fecha).toLocaleDateString()}</Card.Title>
             <Text style={{ color: getColor(item.bitacora_estado) }}>{item.bitacora_estado}</Text>
             <Card.Divider />
             <Text style={{ color: '#000000', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', fontSize: 16 }}>{item.bitacora_description}</Text>
@@ -99,6 +123,8 @@ export default function Bitacora() {
             </View>
           </Card>
         )}
+        refreshControl={ // Componente RefreshControl para FlatList
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         nestedScrollEnabled={true} // Habilitar desplazamiento interno de FlatList
       />
       <View style={styles.bottomBar}>

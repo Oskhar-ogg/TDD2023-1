@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, ImageBackground, Button, Alert, ScrollView} from 'react-native';
+import {View, TouchableOpacity, Alert, ScrollView, Image} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { Card, ListItem, Icon } from '@rneui/themed';
+import { Card , Text} from '@rneui/themed';
 import styles from '../../componentes/estilos/Estilos';
 
+const PlaceholderImage = require('../../recursosvisuales/albin_trotter.jpg');
+const PlaceholderImage2 = require('../../recursosvisuales/baxi.jpg');
 
 const  Inventario = () => {
   
@@ -29,36 +31,45 @@ navigation.navigate('Bitácora');
     <View style={styles.container}>
       <View style = {styles.CenterContainer}> 
       <ScrollView>     
-        <TouchableOpacity>  
-          <Card>
-          <Card.Title>CALDERAS</Card.Title>
-          <Card.Divider />
-          <Card.Image
-            style={{ padding: 0 }}
-            source={{
-              uri: '../../recursosvisuales/Fondo 1.jpg',
-            }}
-          />
-          <Text style={{ marginBottom: 10 }}>
-            The idea with React Native Elements is more about component
-            structure than actual design.
-          </Text>
-        </Card></TouchableOpacity>
-        <TouchableOpacity><Card>
-          <Card.Title>CALEFONTS</Card.Title>
-          <Card.Divider />
-          <Card.Image
-            style={{ padding: 0 }}
-            source={{
-              uri:
-                'https://awildgeographer.files.wordpress.com/2015/02/john_muir_glacier.jpg',
-            }}
-          />
-          <Text style={{ marginBottom: 10 }}>
-            The idea with React Native Elements is more about component
-            structure than actual design.
-          </Text>
-        </Card></TouchableOpacity>
+        <TouchableOpacity onPress={ () => Alert.alert('Debe llevar a una selección de calderas por marca')}>  
+        <Card>
+  <Card.Title>CALDERAS</Card.Title>
+  <Card.Divider />
+  <Card.Image style={{  
+    flex: 1,
+    width: 320,
+    height: 350,
+    borderRadius: 18,
+    justifyContent: 'center',
+    alignItems: 'stretch',}}>
+    <Image source={PlaceholderImage2} style = {{maxWidth: 320, maxHeight: 440}}/>
+  </Card.Image>
+  <Card.Divider />
+  <Text style={{ marginBottom: 10 }}>Calderas murales y de pie. </Text>   
+    <Text style={{ marginBottom: 10 }}>Uso domiciliario e industrial.</Text>
+    <Text style={{ marginBottom: 10 }}>Combustibles: gas licuado, gas natural, petróleo y electricidad.</Text>
+</Card>
+
+        </TouchableOpacity>
+        <TouchableOpacity onPress={ () => Alert.alert('Debe llevar a una selección de calefonts por marca')}>
+        <Card>
+  <Card.Title>CALEFONTS</Card.Title>
+  <Card.Divider />
+  <Card.Image style={{ 
+    flex: 1,
+    width: 320,
+    height: 440,
+    borderRadius: 18,
+    justifyContent: 'center',
+    alignItems: 'stretch',}}>
+    <Image source={PlaceholderImage} style = {{maxWidth: 320, maxHeight: 440}}/>
+  </Card.Image>
+  <Card.Divider />
+  <Text style={{ marginBottom: 10 }}>Calefonts de uso domiciliario a gas de tipo tiro forzado y tiro natural.</Text>
+    <Text style={{ marginBottom: 10 }}> Combustibles: gas licuado y gas natural.
+  </Text>
+</Card>
+</TouchableOpacity>
       </ScrollView>
       </View>
       <View style={styles.bottomBar}>

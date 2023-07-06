@@ -11,6 +11,8 @@ import Mas from './src/ventanas/mas/Mas';
 import Bitacora from './src/ventanas/bitacora/Bitacora';
 import AgregarBitacora from './src/ventanas/bitacora/AgregarBitacora';
 import Busqueda from './src/ventanas/busqueda/Busqueda';
+import ListaCalefont from './src/ventanas/inventario/ListaCalefont';
+import ListaCalderas from './src/ventanas/inventario/ListaCalderas';
 
 
 const App = () => {
@@ -22,6 +24,8 @@ const App = () => {
     <Stack.Screen name="MDIAPP V0.8" component={Inicio} />
     <Stack.Screen name="Inventario" component={Inventario} />
     <Stack.Screen name="Agenda" component={Calendario} />
+    <Stack.Screen name="ListaCalderas" component={ListaCalderas} />
+    <Stack.Screen name="ListaCalefont" component={ListaCalefont} />
     <Stack.Screen
       name="Bitácora"
       component={Bitacora}

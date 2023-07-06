@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import React from 'react';
-import {View, TouchableOpacity, Text, StyleSheet, Button, Alert} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {View, TouchableOpacity, Text} from 'react-native';
 import { Agenda, LocaleConfig } from 'react-native-calendars';
 import {Card, Avatar} from 'react-native-paper';
 import { AntDesign } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import styles from '../../componentes/estilos/Estilos';
+import { getAgenda, saveAgenda, deleteAgenda } from '../../../api';
+
 
 LocaleConfig.locales['es'] = {
   monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre',
@@ -25,51 +25,6 @@ const timeToString = (time) => {
 };
 
 const Calendario = () => {
-  const [items, setItems] = useState({});
-
-  const loadItems = (day) => {
-    setTimeout(() => {
-      for (let i = -15; i < 85; i++) {
-        const time = day.timestamp + i * 24 * 60 * 60 * 1000;
-        const strTime = timeToString(time);
-        if (!items[strTime]) {
-          items[strTime] = [];
-          const numItems = Math.floor(Math.random() * 1 + 1);
-          for (let j = 0; j < numItems; j++) {
-            items[strTime].push({
-              name: 'Item for ' + strTime + ' #' + j,
-              height: Math.max(15, Math.floor(Math.random() * 3)),
-            });
-          }
-        }
-      }
-      const newItems = {};
-      Object.keys(items).forEach((key) => {
-        newItems[key] = items[key];
-      });
-      setItems(newItems);
-    }, 15);
-  };
-
-  const renderItem = (item) => {
-    return (
-      <TouchableOpacity style={{marginRight: 10, marginTop: 17}}>
-        <Card>
-          <Card.Content>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}>
-              <Text>{item.name}</Text>
-              <Avatar.Text label="MDI" />
-            </View>
-          </Card.Content>
-        </Card>
-      </TouchableOpacity>
-    );
-  };
 
 const navigation = useNavigation();
 const handleInicioPress = () => {
@@ -88,14 +43,89 @@ const handleBitacoraPress = () => {
 navigation.navigate('Bitácora');
 };
 
-  return (
-    <View style = {styles.container}>
-      <Agenda
-        items={items}
-        loadItemsForMonth={loadItems}
-        selected={'2023-06-27'}
-        renderItem={renderItem}
-      />
+const [items, setItems] = useState({});
+
+useEffect(() => {
+    loadItems();
+  }, []);
+
+
+  const loadItems = async () => {
+    try {
+      const agendas = await getAgenda();
+      const newItems = {};
+
+      agendas.forEach((agenda) => {
+        const time = new Date(agenda.agenda_fecha).getTime();
+        const strTime = timeToString(time);
+
+        if (!newItems[strTime]) {
+          newItems[strTime] = [];
+        }
+
+        newItems[strTime].push({
+          name: agenda.agenda_cliente,
+          agenda_cliente: agenda.agenda_cliente,
+          agenda_direccion: agenda.agenda_direccion,
+          agenda_hora: agenda.agenda_hora,
+          agenda_fecha: agenda.agenda_fecha
+        });
+      });
+
+      setItems(newItems);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const renderItem = React.memo(({ item }) => {
+    return (
+      <TouchableOpacity style={{ marginRight: 10, marginTop: 17 }}>
+        <Card>
+          <Card.Content>
+            <View
+              style={{
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text>Cliente: {item.agenda_cliente}</Text>
+              <Text>Dirección: {item.agenda_direccion}</Text>
+              <Text>Hora: {item.agenda_hora}</Text>
+              <Text>Fecha: {new Date(item.agenda_fecha).toLocaleDateString()}</Text>
+            </View>
+          </Card.Content>
+        </Card>
+      </TouchableOpacity>
+    );
+  });
+
+return (
+  <View style={styles.container}>
+    <Agenda
+      items={items}
+      loadItemsForMonth={loadItems}
+      selected={'2023-06-27'}
+      renderItem={(item) => (
+        <TouchableOpacity style={{ marginRight: 10, marginTop: 17 }}>
+          <Card>
+            <Card.Content>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                <Text>Cliente: {item.agenda_cliente}</Text>
+                <Text>Dirección: {item.agenda_direccion}</Text>
+                <Text>Hora: {item.agenda_hora}</Text>
+                <Text>Fecha: {new Date(item.agenda_fecha).toLocaleDateString()}</Text>
+              </View>
+            </Card.Content>
+          </Card>
+        </TouchableOpacity>
+      )}
+    />
         <View style={styles.bottomBar}>
         <TouchableOpacity
           style={styles.button}

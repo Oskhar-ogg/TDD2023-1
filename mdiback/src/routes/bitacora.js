@@ -17,7 +17,7 @@ router.get('/bitacora/', getBitacora)
  * @swagger
  * /bitacora:
  *      get:
- *          summary: Retrieve a list of bitacora
+ *          summary: Carga la lista de bitaácoras
  *          tags: [Bitacoras] 
  */
 
@@ -28,7 +28,7 @@ router.get('/bitacora/count', getBitacoraCount)
  * @swagger
  * /bitacora/count:
  *      get:
- *          summary: Retrieve a id of bitacora
+ *          summary: Carga una bitácora por id
  *          tags: [Bitacoras]
  */
 
@@ -38,7 +38,7 @@ router.get('/bitacora/:id', getBitacoras)
  * @swagger
  * /bitacora/{id}:
  *       get:
- *          summary: Get total count of bitacora.
+ *          summary: Obtiene la cantidad total de bitácoras ingresadas.
  *          tags: [Bitacoras]
  */
 
@@ -50,7 +50,7 @@ router.post('/bitacora/', saveBitacora)
  * @swagger
  * /bitacora:
  *      post:
- *          summary:  Save a new bitacora.
+ *          summary:  Guarda una nueva bitácora.
  *          tags: [Bitacoras]
  */
 
@@ -59,7 +59,7 @@ router.put('/bitacora/:id', updateBitacora)
  * @swagger
  * /bitacora:
  *      put:
- *          summary: Update de info of bitacora.
+ *          summary: Actualiza el contenido. de una bitácora.
  *          tags: [Bitacoras]
  */
 
@@ -69,7 +69,7 @@ router.delete('/bitacora/:id', deleteBitacora)
  * @swagger
  * /bitacora:
  *      delete:
- *          summary: Delete items on bitacora.
+ *          summary: Borra una bitácora seleccionada
  *          tags: [Bitacoras]
  */
 

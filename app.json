@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "TDD2023",
-    "slug": "TDD2023",
+    "slug": "tdd2023",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,14 +21,15 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.oskharcc.tdd2023"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "9618b209-755e-41c4-97b6-870e27874dc7"
+        "projectId": "d92cbffb-b29d-4503-930e-fdfac3d55c30"
       }
     },
     "owner": "oskhar-cc"

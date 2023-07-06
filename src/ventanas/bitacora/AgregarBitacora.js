@@ -40,9 +40,9 @@ export default function AgregarBitacora() {
     bitacora_title: '',
     bitacora_description: '',
     bitacora_estado: '',
-    bitacora_pago: '',
-    bitacora_valor_cobrado: '',
-    bitacora_foto: '',
+    bitacora_pago: 'No',
+    bitacora_valor_cobrado: '0',
+    bitacora_foto: 'Debería ser un archivo, pero hay un drama con expo :c',
     bitacora_fecha: new Date().toISOString().split('T')[0], // Formato yyyy-mm-dd
   });
   
