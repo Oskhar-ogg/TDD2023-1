@@ -17,27 +17,27 @@ const App = () => {
   const Stack = createNativeStackNavigator();
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: "#08546c" }, headerTitleStyle: { color: "#ffffff" }}}>
-        <Stack.Screen name="MDIAPP V0.8" component={Inicio} />
-        <Stack.Screen name="Inventario" component={Inventario} />
-        <Stack.Screen name="Agenda" component={Calendario} />
-        <Stack.Screen
-          name="Bitácora"
-          component={Bitacora}
-          options={({ navigation }) => ({
-            headerRight: () => (
-              <TouchableOpacity onPress={() => navigation.navigate('Agregar Bitácora')}>
-                <Ionicons name="add-circle-sharp" size={36} color="#ffffff"  />
-              </TouchableOpacity>
-            ),
-          })}
-        />
-        <Stack.Screen name="Agregar Bitácora" component={AgregarBitacora} />
-        <Stack.Screen name="Búsqueda" component={Busqueda} />
-        <Stack.Screen name="Más" component={Mas} />
-      </Stack.Navigator>
-    </NavigationContainer>
+<NavigationContainer>
+  <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: "#08546c" }, headerTitleStyle: { color: "#ffffff" }, headerTitleAlign: "center" }}>
+    <Stack.Screen name="MDIAPP V0.8" component={Inicio} />
+    <Stack.Screen name="Inventario" component={Inventario} />
+    <Stack.Screen name="Agenda" component={Calendario} />
+    <Stack.Screen
+      name="Bitácora"
+      component={Bitacora}
+      options={({ navigation }) => ({
+        headerRight: () => (
+          <TouchableOpacity onPress={() => navigation.navigate('Agregar Bitácora')}>
+            <Ionicons name="add-circle-sharp" size={36} color="#ffffff"  />
+          </TouchableOpacity>
+        ),
+      })}
+    />
+    <Stack.Screen name="Agregar Bitácora" component={AgregarBitacora} />
+    <Stack.Screen name="Búsqueda" component={Busqueda} />
+    <Stack.Screen name="Más" component={Mas} />
+  </Stack.Navigator>
+</NavigationContainer>
   );
 };
 export default App;

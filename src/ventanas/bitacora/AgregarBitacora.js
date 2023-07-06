@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, TouchableOpacity, Text } from 'react-native';
+import { View, Button, TouchableOpacity, TextInput } from 'react-native';
 import { saveBitacora } from '../../../api';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../../src/componentes/estilos/Estilos';
 import { AntDesign } from '@expo/vector-icons';
-import { Card } from '@rneui/themed';
+import { Card, Text } from '@rneui/themed';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+
 
 export default function AgregarBitacora() {
-
   const navigation = useNavigation();
 
   const handleInicioPress = () => {
@@ -44,34 +45,50 @@ export default function AgregarBitacora() {
     bitacora_fecha: ''
   });
 
-  const handleInputChange = (key, value) => 
+  const handleInputChange = (key, value) => {
     setBitacoraData({ ...bitacoraData, [key]: value });
-
+  };
 
   const handleAgregarBitacora = () => {
     console.log(bitacoraData);
     try {
       saveBitacora(bitacoraData);
+      handleBitacoraPress();
       // Lógica adicional después de agregar la bitácora (por ejemplo, actualizar la lista de bitácoras)
     } catch (error) {
       console.log(error);
     }
   };
 
+  const [isDatePickerVisible, setDatePickerVisible] = useState(false);
+
+  const showDatePicker = () => {
+    setDatePickerVisible(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisible(false);
+  };
+
+  const handleDateConfirm = (date) => {
+    hideDatePicker();
+    handleInputChange('bitacora_fecha', date.toISOString().split('T')[0]);
+  };
+
   return (
     <View style={styles.container}>
-    <View style = {styles.CenterContainer}>
-      <Card>
-      <TextInput
-        placeholder="Título"
-        value={bitacoraData.bitacora_title}
-        onChangeText={(text) => handleInputChange('bitacora_title', text)}
-      />
-      <TextInput
-        placeholder="Descripción"
-        value={bitacoraData.bitacora_description}
-        onChangeText={(text) => handleInputChange('bitacora_description', text)}
-      />
+      <View style={styles.CenterContainer}>
+        <Card>
+          <TextInput
+            placeholder="Título"
+            value={bitacoraData.bitacora_title}
+            onChangeText={(text) => handleInputChange('bitacora_title', text)}
+          />
+          <TextInput
+            placeholder="Descripción"
+            value={bitacoraData.bitacora_description}
+            onChangeText={(text) => handleInputChange('bitacora_description', text)}
+          />
       <TextInput
         placeholder="Estado"
         value={bitacoraData.bitacora_estado}
@@ -92,13 +109,17 @@ export default function AgregarBitacora() {
         value={bitacoraData.bitacora_foto}
         onChangeText={(text) => handleInputChange('bitacora_foto', text)}
       />
-      <TextInput
-        placeholder="Fecha"
-        value={bitacoraData.bitacora_fecha}
-        onChangeText={(text) => handleInputChange('bitacora_fecha', text)}
-      />
-      <Button title="Agregar" onPress={handleAgregarBitacora} />
-      </Card>      
+          <TouchableOpacity onPress={showDatePicker}>
+            <Text>{bitacoraData.bitacora_fecha || 'Fecha'}</Text>
+          </TouchableOpacity>
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="date"
+            onConfirm={handleDateConfirm}
+            onCancel={hideDatePicker}
+          />
+          <Button title="Agregar" onPress={handleAgregarBitacora}/>
+        </Card>
       </View>
       <View style={styles.bottomBar}>
         <TouchableOpacity style={styles.button} onPress={handleInicioPress}>
@@ -110,7 +131,7 @@ export default function AgregarBitacora() {
           <Text style={styles.buttonText}>Inventario</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.roundButton1} onPress={handleBitacoraPress}>
-          <AntDesign name="plus" size={24} color="#ffffff" />
+          <AntDesign name="form" size={24} color="#ffffff" />
           <Text style={styles.buttonText}>Bitácora</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={handleAgendaPress}>

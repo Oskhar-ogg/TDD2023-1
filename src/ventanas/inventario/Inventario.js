@@ -29,8 +29,23 @@ navigation.navigate('Bitácora');
     <View style={styles.container}>
       <View style = {styles.CenterContainer}> 
       <ScrollView>     
-      <Card>
-          <Card.Title>HELLO WORLD</Card.Title>
+        <TouchableOpacity>  
+          <Card>
+          <Card.Title>CALDERAS</Card.Title>
+          <Card.Divider />
+          <Card.Image
+            style={{ padding: 0 }}
+            source={{
+              uri: '../../recursosvisuales/Fondo 1.jpg',
+            }}
+          />
+          <Text style={{ marginBottom: 10 }}>
+            The idea with React Native Elements is more about component
+            structure than actual design.
+          </Text>
+        </Card></TouchableOpacity>
+        <TouchableOpacity><Card>
+          <Card.Title>CALEFONTS</Card.Title>
           <Card.Divider />
           <Card.Image
             style={{ padding: 0 }}
@@ -43,239 +58,7 @@ navigation.navigate('Bitácora');
             The idea with React Native Elements is more about component
             structure than actual design.
           </Text>
-          <Button
-            icon={
-              <Icon
-                name="code"
-                color="#ffffff"
-                iconStyle={{ marginRight: 10 }}
-              />
-            }
-            buttonStyle={{
-              borderRadius: 0,
-              marginLeft: 0,
-              marginRight: 0,
-              marginBottom: 0,
-            }}
-            title="VIEW NOW"
-          />
-        </Card>
-        <Card>
-          <Card.Title>HELLO WORLD</Card.Title>
-          <Card.Divider />
-          <Card.Image
-            style={{ padding: 0 }}
-            source={{
-              uri:
-                'https://awildgeographer.files.wordpress.com/2015/02/john_muir_glacier.jpg',
-            }}
-          />
-          <Text style={{ marginBottom: 10 }}>
-            The idea with React Native Elements is more about component
-            structure than actual design.
-          </Text>
-          <Button
-            icon={
-              <Icon
-                name="code"
-                color="#ffffff"
-                iconStyle={{ marginRight: 10 }}
-              />
-            }
-            buttonStyle={{
-              borderRadius: 0,
-              marginLeft: 0,
-              marginRight: 0,
-              marginBottom: 0,
-            }}
-            title="VIEW NOW"
-          />
-        </Card>
-        <Card>
-          <Card.Title>HELLO WORLD</Card.Title>
-          <Card.Divider />
-          <Card.Image
-            style={{ padding: 0 }}
-            source={{
-              uri:
-                'https://awildgeographer.files.wordpress.com/2015/02/john_muir_glacier.jpg',
-            }}
-          />
-          <Text style={{ marginBottom: 10 }}>
-            The idea with React Native Elements is more about component
-            structure than actual design.
-          </Text>
-          <Button
-            icon={
-              <Icon
-                name="code"
-                color="#ffffff"
-                iconStyle={{ marginRight: 10 }}
-              />
-            }
-            buttonStyle={{
-              borderRadius: 0,
-              marginLeft: 0,
-              marginRight: 0,
-              marginBottom: 0,
-            }}
-            title="VIEW NOW"
-          />
-        </Card>
-        <Card>
-          <Card.Title>HELLO WORLD</Card.Title>
-          <Card.Divider />
-          <Card.Image
-            style={{ padding: 0 }}
-            source={{
-              uri:  '../../../src/recursosvisuales/albin_trotter.jpg',
-            }}
-          />
-          <Text style={{ marginBottom: 10 }}>
-            The idea with React Native Elements is more about component
-            structure than actual design.
-          </Text>
-          <Button
-            icon={
-              <Icon
-                name="code"
-                color="#ffffff"
-                iconStyle={{ marginRight: 10 }}
-              />
-            }
-            buttonStyle={{
-              borderRadius: 0,
-              marginLeft: 0,
-              marginRight: 0,
-              marginBottom: 0,
-            }}
-            title="VIEW NOW"
-          />
-        </Card>
-        <Card>
-          <Card.Title>HELLO WORLD</Card.Title>
-          <Card.Divider />
-          <Card.Image
-            style={{ padding: 0 }}
-            source={{
-              uri:
-                'https://awildgeographer.files.wordpress.com/2015/02/john_muir_glacier.jpg',
-            }}
-          />
-          <Text style={{ marginBottom: 10 }}>
-            The idea with React Native Elements is more about component
-            structure than actual design.
-          </Text>
-          <Button
-            icon={
-              <Icon
-                name="code"
-                color="#ffffff"
-                iconStyle={{ marginRight: 10 }}
-              />
-            }
-            buttonStyle={{
-              borderRadius: 0,
-              marginLeft: 0,
-              marginRight: 0,
-              marginBottom: 0,
-            }}
-            title="VIEW NOW"
-          />
-        </Card>
-        <Card>
-          <Card.Title>HELLO WORLD</Card.Title>
-          <Card.Divider />
-          <Card.Image
-            style={{ padding: 0 }}
-            source={{
-              uri:
-                'https://awildgeographer.files.wordpress.com/2015/02/john_muir_glacier.jpg',
-            }}
-          />
-          <Text style={{ marginBottom: 10 }}>
-            The idea with React Native Elements is more about component
-            structure than actual design.
-          </Text>
-          <Button
-            icon={
-              <Icon
-                name="code"
-                color="#ffffff"
-                iconStyle={{ marginRight: 10 }}
-              />
-            }
-            buttonStyle={{
-              borderRadius: 0,
-              marginLeft: 0,
-              marginRight: 0,
-              marginBottom: 0,
-            }}
-            title="VIEW NOW"
-          />
-        </Card>
-        <Card>
-          <Card.Title>HELLO WORLD</Card.Title>
-          <Card.Divider />
-          <Card.Image
-            style={{ padding: 0 }}
-            source={{
-              uri:
-                'https://awildgeographer.files.wordpress.com/2015/02/john_muir_glacier.jpg',
-            }}
-          />
-          <Text style={{ marginBottom: 10 }}>
-            The idea with React Native Elements is more about component
-            structure than actual design.
-          </Text>
-          <Button
-            icon={
-              <Icon
-                name="code"
-                color="#ffffff"
-                iconStyle={{ marginRight: 10 }}
-              />
-            }
-            buttonStyle={{
-              borderRadius: 0,
-              marginLeft: 0,
-              marginRight: 0,
-              marginBottom: 0,
-            }}
-            title="VIEW NOW"
-          />
-        </Card>
-        <Card>
-          <Card.Title>HELLO WORLD</Card.Title>
-          <Card.Divider />
-          <Card.Image
-            style={{ padding: 0 }}
-            source={{
-              uri:
-                'https://awildgeographer.files.wordpress.com/2015/02/john_muir_glacier.jpg',
-            }}
-          />
-          <Text style={{ marginBottom: 10 }}>
-            The idea with React Native Elements is more about component
-            structure than actual design.
-          </Text>
-          <Button
-            icon={
-              <Icon
-                name="code"
-                color="#ffffff"
-                iconStyle={{ marginRight: 10 }}
-              />
-            }
-            buttonStyle={{
-              borderRadius: 0,
-              marginLeft: 0,
-              marginRight: 0,
-              marginBottom: 0,
-            }}
-            title="VIEW NOW"
-          />
-        </Card>
+        </Card></TouchableOpacity>
       </ScrollView>
       </View>
       <View style={styles.bottomBar}>

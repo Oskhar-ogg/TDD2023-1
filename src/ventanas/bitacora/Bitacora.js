@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { View, TouchableOpacity, FlatList, SafeAreaView, Alert } from 'react-native';
+import { View, TouchableOpacity, FlatList} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import { getBitacora } from '../../../api';
+import { getBitacora, deleteBitacora } from '../../../api';
 import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../../src/componentes/estilos/Estilos';
-import { Card, Text } from '@rneui/themed';
+import { Card, Text, Button} from '@rneui/themed';
 
 export default function Bitacora() {
   const navigation = useNavigation();
@@ -30,21 +30,29 @@ export default function Bitacora() {
     navigation.navigate('Bitácora');
   };
   
-  const handleAgregarBitacoraPress = () => {
-    navigation.navigate('AgregarBitacora');
-  };
-
   const [bitacora, setBitacora] = useState([]);
 
   const cargarBitacora = async () => {
-    const data = await getBitacora();
-    setBitacora(data);
-  }
-
+    try {
+      const data = await getBitacora();
+      setBitacora(data);
+    } catch (error) {
+      console.error(error);
+      // Manejar el error de la Promesa aquí, por ejemplo, mostrar un mensaje de error al usuario
+    }
+  };
+  
   useEffect(() => {
     cargarBitacora();
+    handleBitacoraPress();
   }, []);
 
+  const handleDelete = async (bitacora_id) => {
+      await deleteBitacora(bitacora_id);
+      console.log('Bitacora eliminada correctamente');
+      await handleBitacoraPress();
+  };
+    
   const getColor = (estado) => {
     if (estado === 'Finalizado') {
       return 'green'; // Color verde para el estado "Finalizado"
@@ -69,6 +77,26 @@ export default function Bitacora() {
             <Text style={{ color: '#000000', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', fontSize: 16 }}>{item.bitacora_description}</Text>
             <Card.Divider />
             <Text style={{ color: '#000000', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', fontSize: 16 }}>${item.bitacora_valor_cobrado}</Text>
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+              <Button
+                icon={{ name: 'trash', type: 'font-awesome', size: 15, color: 'white' }}
+                iconCenter
+                iconContainerStyle={{ marginLeft: 5 }}
+                titleStyle={{ fontWeight: '700' }}
+                buttonStyle={{
+                  backgroundColor: 'rgba(199, 43, 98, 1)',
+                  borderColor: 'transparent',
+                  borderWidth: 2,
+                  borderRadius: 50,
+                }}
+                containerStyle={{
+                  width: 50,
+                  marginHorizontal: 50,
+                  marginVertical: 10,
+                }}
+                onPress={() => handleDelete(item.bitacora_id)} // Corregir el argumento de la función handleDelete
+              />
+            </View>
           </Card>
         )}
         nestedScrollEnabled={true} // Habilitar desplazamiento interno de FlatList
