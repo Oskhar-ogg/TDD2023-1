@@ -1,7 +1,6 @@
 //SECTOR DE IMPORTACIONES
 import React from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   TouchableOpacity,
@@ -9,20 +8,25 @@ import {
   Button,
   Alert,
 } from 'react-native';
-import { AntDesign, Ionicons } from '@expo/vector-icons';
+import { AntDesign} from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import styles from '../componentes/estilos/Estilos';
+import { useState } from 'react';
+
+import { MontoBitacora, MontoMesBitacora } from '../../api';
 
 
 //SECTOR DE FUNCIONES
 const Tarjeta = () => {
+
   return (
     <ImageBackground source={require('./../imagenes/tarjeta.jpg')} style={styles.image}>
       <View style={styles.textContainer}>
         <Text style={styles.TextCard}>BALANCE DEL MES</Text>
-        <Text style={styles.TextCardBottom}>Ingreso Mes =  +$</Text>
+        <Text style={styles.TextCardBottom}>Saldo Mes =  +${MontoMesBitacora}</Text>
         <Text style={styles.TextCardBottom2}>Gasto Mes = -$</Text>
+        <Text style={styles.TextCardBottom2}>Ingreso Total = +${MontoBitacora}</Text>
       </View>
     </ImageBackground>
   );
@@ -44,7 +48,7 @@ export default function Inicio() {
     navigation.navigate('Agenda');
     };
     const handleMasPress = () => {
-    navigation.navigate('Mas');
+    navigation.navigate('Más');
     };
     const handleBitacoraPress = () => {
     navigation.navigate('Bitácora');

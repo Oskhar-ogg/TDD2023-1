@@ -1,167 +1,193 @@
-import React, { useState, useEffect } from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, TouchableOpacity} from 'react-native';
 import { Agenda, LocaleConfig } from 'react-native-calendars';
-import {Card, Avatar} from 'react-native-paper';
-import { AntDesign } from '@expo/vector-icons';
+import { getAgenda } from '../../../api'; 
+import { Card } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import styles from '../../../src/componentes/estilos/Estilos';
+import { AntDesign } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
-import styles from '../../componentes/estilos/Estilos';
-import { getAgenda, saveAgenda, deleteAgenda } from '../../../api';
 
 
 LocaleConfig.locales['es'] = {
-  monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre',
-  'Octubre','Noviembre','Diciembre'],
-  monthNamesShort: ['Ene.','Feb.','Mar.','Abr.','May.','Jun.','Jul.','Ago.','Sep.','Oct.','Nov.','Dic.'], 
-  dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
-  dayNamesShort: ['Dom.','Lun.','Mar.','Mié.','Jue.','Vie.','Sáb.'],
-  today: 'Hoy\'hoy'
+  monthNames: [
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio ',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre',
+  ],
+  monthNamesShort: [
+    'Ene.',
+    'Feb.',
+    'Mar.',
+    'Abr.',
+    'May.',
+    'Jun.',
+    'Jul.',
+    'Ago.',
+    'Sep.',
+    'Oct.',
+    'Nov.',
+    'Dic.',
+  ],
+  dayNames: [
+    'Domingo',
+    'Lunes',
+    'Martes',
+    'Miércoles ',
+    'Jueves',
+    'Viernes',
+    'Sábado',
+  ],
+  dayNamesShort: ['Dom.', 'Lun.', 'Mar.', 'Mié.', 'Jue.', 'Vie.', 'Sáb.'],
+  today: 'Hoy',
 };
 LocaleConfig.defaultLocale = 'es';
 
-const timeToString = (time) => {
-  const date = new Date(time);
-  return date.toISOString().split('T')[0];
-};
-
 const Calendario = () => {
+  
+  const navigation = useNavigation();
 
-const navigation = useNavigation();
-const handleInicioPress = () => {
-navigation.navigate('MDIAPP V0.8');
-};
-const handleInventarioPress = () => {
-navigation.navigate('Inventario');
-};
-const handleAgendaPress = () => {
-navigation.navigate('Agenda');
-};
-const handleMasPress = () => {
-navigation.navigate('Más');
-};
-const handleBitacoraPress = () => {
-navigation.navigate('Bitácora');
-};
+  const handleInicioPress = () => {
+    navigation.navigate('MDIAPP V0.8');
+  };
+  
+  const handleInventarioPress = () => {
+    navigation.navigate('Inventario');
+  };
+  
+  const handleAgendaPress = () => {
+    navigation.navigate('Agenda');
+  };
+  
+  const handleMasPress = () => {
+    navigation.navigate('Más');
+  };
+  
+  const handleBitacoraPress = () => {
+    navigation.navigate('Bitácora');
+  };
 
-const [items, setItems] = useState({});
+  const [items, setItems] = useState({});
 
-useEffect(() => {
-    loadItems();
-  }, []);
-
-
-  const loadItems = async () => {
+  const cargarItems = async  () => {
     try {
-      const agendas = await getAgenda();
-      const newItems = {};
+      const agendas = await getAgenda(); // Obtiene los datos de la agenda desde tu API
+
+      const formattedItems = {};
 
       agendas.forEach((agenda) => {
-        const time = new Date(agenda.agenda_fecha).getTime();
-        const strTime = timeToString(time);
+        const date = agenda.agenda_fecha;
+        const dateString = new Date(date).toISOString().split('T')[0];
 
-        if (!newItems[strTime]) {
-          newItems[strTime] = [];
+        if (!formattedItems[dateString]) {
+          formattedItems[dateString] = [];
         }
 
-        newItems[strTime].push({
-          name: agenda.agenda_cliente,
+        formattedItems[dateString].push({
+          agenda_id: agenda.agenda_id,
           agenda_cliente: agenda.agenda_cliente,
           agenda_direccion: agenda.agenda_direccion,
           agenda_hora: agenda.agenda_hora,
-          agenda_fecha: agenda.agenda_fecha
+          agenda_fecha: agenda.agenda_fecha,
         });
       });
 
-      setItems(newItems);
+      setItems(formattedItems);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const renderItem = React.memo(({ item }) => {
-    return (
-      <TouchableOpacity style={{ marginRight: 10, marginTop: 17 }}>
-        <Card>
-          <Card.Content>
-            <View
-              style={{
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Text>Cliente: {item.agenda_cliente}</Text>
-              <Text>Dirección: {item.agenda_direccion}</Text>
-              <Text>Hora: {item.agenda_hora}</Text>
-              <Text>Fecha: {new Date(item.agenda_fecha).toLocaleDateString()}</Text>
-            </View>
-          </Card.Content>
-        </Card>
-      </TouchableOpacity>
-    );
-  });
+  useEffect(() => {
+    cargarItems();
+    console.log(setItems);
+    console.log('citas cargadas correctamente');
+  }, []);
 
-return (
-  <View style={styles.container}>
-    <Agenda
-      items={items}
-      loadItemsForMonth={loadItems}
-      selected={'2023-06-27'}
-      renderItem={(item) => (
+  class Reservation extends React.PureComponent {
+    render() {
+      const { item } = this.props;
+      const {
+        agenda_id,
+        agenda_cliente,
+        agenda_direccion,
+        agenda_hora,
+        agenda_fecha,
+      } = item;
+      console.log(item);
+  
+      return (
         <TouchableOpacity style={{ marginRight: 10, marginTop: 17 }}>
           <Card>
             <Card.Content>
               <View
                 style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <Text>Cliente: {item.agenda_cliente}</Text>
-                <Text>Dirección: {item.agenda_direccion}</Text>
-                <Text>Hora: {item.agenda_hora}</Text>
-                <Text>Fecha: {new Date(item.agenda_fecha).toLocaleDateString()}</Text>
+                <Text>Cita N°: {agenda_id}</Text>
+                <Text>Cliente: {agenda_cliente}</Text>
+                <Text>Lugar: {agenda_direccion}</Text>
+                <Text>Hora: {agenda_hora}</Text>
+                <Text>Fecha: {new Date(agenda_fecha).toLocaleDateString()}</Text>
               </View>
             </Card.Content>
           </Card>
         </TouchableOpacity>
-      )}
-    />
-        <View style={styles.bottomBar}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handleInicioPress}
-        >
+      );
+    }
+  }; 
+  const renderItem = (item) => {
+    return <Reservation item={item} />;
+  };
+  const renderEmptyDate = () => {
+    return (
+      <Card>
+        <Card.Content>
+          <Text>No hay citas agendadas para hoy</Text>
+        </Card.Content>
+      </Card> 
+    );
+  };  
+  return (
+    <View style={{ flex: 1 }}>
+      <Agenda
+        items={items}
+        loadItemsForMonth={cargarItems}
+        selected={new Date().toISOString().split('T')[0]}
+        renderItem={renderItem}
+        renderEmptyDate={renderEmptyDate}
+      />
+    <View style={styles.bottomBar}>
+        <TouchableOpacity style={styles.button} onPress={handleInicioPress}>
           <AntDesign name="home" size={24} color="#ffffff" /><Text style={styles.buttonText}>Inicio</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handleInventarioPress}
-        >
+        <TouchableOpacity style={styles.button} onPress={handleInventarioPress}>
           <AntDesign name="database" size={24} color="#FFFFFF" /><Text style={styles.buttonText}>Inventario</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.roundButton1}
-          onPress={handleBitacoraPress}
-        >
-          <AntDesign name="plus" size={24} color="#ffffff" /><Text style={styles.buttonText}>Bitácora</Text>
+        <TouchableOpacity style={styles.roundButton1} onPress={handleBitacoraPress}>
+          <AntDesign name="form" size={24} color="#ffffff" /><Text style={styles.buttonText}>Bitácora</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handleAgendaPress}
-        >
+        <TouchableOpacity style={styles.button} onPress={handleAgendaPress}>
           <AntDesign name="calendar" size={24} color="#ffffff" /><Text style={styles.buttonText}>Agenda</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handleMasPress}
-        >
-          <AntDesign name="bars" size={24} color="#FFFFFF" /><Text style={styles.buttonText}> Más</Text>
+        <TouchableOpacity style={styles.button} onPress={handleMasPress}>
+          <AntDesign name="bars" size={24} color="#FFFFFF" /><Text style={styles.buttonText}>Más</Text>
         </TouchableOpacity>
-        </View>
+      </View>
       <StatusBar style="auto" />
     </View>
   );
 };
-
 
 export default Calendario;

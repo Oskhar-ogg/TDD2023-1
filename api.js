@@ -48,6 +48,27 @@ export const deleteBitacora = async (bitacora_id) => {
   }
 };
 
+export const MontoBitacora = async () => {
+  try {
+    const res = await fetch(`${API}/total`);
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+    throw new Error(`Failed to fetch bitacora with id: ${bitacora_id}`);
+  }
+};
+
+export const MontoMesBitacora = async () => {
+  try {
+    const res = await fetch(`${API}/mes`);
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+    throw new Error(`Failed to fetch bitacora with id: ${bitacora_id}`);
+  }
+};
+
+
 export const updateBitacora = async (bitacora_id, bitacoraData) => {
   try {
     const res = await fetch(`${API}/${bitacora_id}`, {

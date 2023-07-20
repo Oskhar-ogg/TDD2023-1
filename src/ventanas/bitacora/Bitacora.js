@@ -25,7 +25,7 @@ export default function Bitacora() {
   };
   
   const handleMasPress = () => {
-    navigation.navigate('Mas');
+    navigation.navigate('Más');
   };
   
   const handleBitacoraPress = () => {
@@ -80,7 +80,7 @@ export default function Bitacora() {
   const getColor = (estado) => {
     if (estado === 'Finalizado') {
       return 'green'; // Color verde para el estado "Finalizado"
-    } else if (estado === 'En Progreso') {
+    } else if (estado === 'En proceso') {
       return 'yellow'; // Color amarillo para el estado "En progreso"
     } else {
       return 'red'; // Color rojo para el estado "No iniciado" o cualquier otro estado

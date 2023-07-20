@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getAgenda, saveAgenda, updateAgenda, deleteAgenda } from '../controllers/agenda';
+import { getAgenda, getAgendas, saveAgenda, updateAgenda, deleteAgenda } from '../controllers/agenda';
 
 const router = Router();
 
@@ -10,7 +10,7 @@ const router = Router();
  *   description: Agenda API
  */
 
-router.get('/agenda', getAgenda);
+router.get('/agenda/', getAgenda);
 
 /**
  * @swagger
@@ -20,7 +20,17 @@ router.get('/agenda', getAgenda);
  *     tags: [Agenda]
  */
 
-router.post('/agenda', saveAgenda);
+router.get('/agenda/:id', getAgendas);
+
+/**
+ * @swagger
+ * /agenda/{id}:
+ *  get:
+ *   summary: Carga una agenda por id.
+ *  tags: [Agenda]
+*/
+
+router.post('/agenda/', saveAgenda);
 
 /**
  * @swagger

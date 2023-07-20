@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Button, TouchableOpacity, TextInput } from 'react-native';
+import { View, Button, TouchableOpacity, TextInput, Switch} from 'react-native';
 import { saveBitacora } from '../../../api';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../../src/componentes/estilos/Estilos';
@@ -9,6 +9,10 @@ import DateTimePickerAndroid from '@react-native-community/datetimepicker';
 
 
 export default function AgregarBitacora() {
+
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const toggleSwitch = () => setIsSwitchOn(!isSwitchOn);
+
 
   const navigation = useNavigation();
 
@@ -25,24 +29,20 @@ export default function AgregarBitacora() {
   };
 
   const handleMasPress = () => {
-    navigation.navigate('Mas');
+    navigation.navigate('Más');
   };
 
   const handleBitacoraPress = () => {
     navigation.navigate('Bitácora');
   };
 
-  const handleAgregarBitacoraPress = () => {
-    navigation.navigate('AgregarBitacora');
-  };
+
 
   const [bitacoraData, setBitacoraData] = useState({
     bitacora_title: '',
     bitacora_description: '',
     bitacora_estado: '',
-    bitacora_pago: 'No',
     bitacora_valor_cobrado: '0',
-    bitacora_foto: 'Debería ser un archivo, pero hay un drama con expo :c',
     bitacora_fecha: new Date().toISOString().split('T')[0], // Formato yyyy-mm-dd
   });
   
@@ -51,15 +51,19 @@ export default function AgregarBitacora() {
   };
 
   const handleAgregarBitacora = () => {
-    console.log(bitacoraData);
+    const data = {
+      ...bitacoraData
+    };
+    console.log(data);
     try {
-      saveBitacora(bitacoraData);
+      saveBitacora(data);
       handleBitacoraPress();
       // Lógica adicional después de agregar la bitácora (por ejemplo, actualizar la lista de bitácoras)
     } catch (error) {
       console.log(error);
     }
   };
+  
 
   const [isDatePickerVisible, setDatePickerVisible] = useState(false);
 
@@ -85,38 +89,45 @@ export default function AgregarBitacora() {
   return (
     <View style={styles.container}>
       <View style={styles.CenterContainer}>
-        <Card>
+        <Card style={styles.Card}>
+          <Card.Title>INGRESO DE NUEVA BITÁCORA</Card.Title>
+          <Card.Divider />
           <TextInput
-            placeholder="Título"
+            style={styles.input}
+            placeholder="Ingresa el titulo de la bitácora"
             value={bitacoraData.bitacora_title}
             onChangeText={(text) => handleInputChange('bitacora_title', text)}
           />
+          <Card.Divider />          
           <TextInput
-            placeholder="Descripción"
+            style={styles.input}
+            placeholder="Ingresa el avance (puedes ocupar el micrófono))"
             value={bitacoraData.bitacora_description}
             onChangeText={(text) => handleInputChange('bitacora_description', text)}
           />
-      <TextInput
-        placeholder="Estado"
-        value={bitacoraData.bitacora_estado}
-        onChangeText={(text) => handleInputChange('bitacora_estado', text)}
-      />
-      <TextInput
-        placeholder="Pago"
-        value={bitacoraData.bitacora_pago}
-        onChangeText={(text) => handleInputChange('bitacora_pago', text)}
-      />
-      <TextInput
-        placeholder="Valor Cobrado"
-        value={bitacoraData.bitacora_valor_cobrado}
-        onChangeText={(text) => handleInputChange('bitacora_valor_cobrado', text)}
-      />
-      <TextInput
-        placeholder="Foto"
-        value={bitacoraData.bitacora_foto}
-        onChangeText={(text) => handleInputChange('bitacora_foto', text)}
-      />
-<TouchableOpacity onPress={showDatePicker}>
+          <Card.Divider />          
+          <TextInput
+            style={styles.input}
+            placeholder="Estado (Vigente / Finalizado/ En progreso)"
+            value={bitacoraData.bitacora_estado}
+            onChangeText={(text) => handleInputChange('bitacora_estado', text)}
+          />
+          <Card.Divider />
+          <Text>¿Hubo Pago?</Text>
+          <Switch
+            value={isSwitchOn}
+            onValueChange={toggleSwitch}
+          />
+          {isSwitchOn && (
+          <TextInput
+          style={styles.input}
+          placeholder="$0"
+          value={bitacoraData.bitacora_valor_cobrado}
+          onChangeText={(text) => handleInputChange('bitacora_valor_cobrado', text)}
+          />)}
+          <Card.Divider />
+          <Text>Fecha</Text>
+          <TouchableOpacity onPress={showDatePicker}>
             <Text>{bitacoraData.bitacora_fecha || 'Fecha'}</Text>
           </TouchableOpacity>
           {isDatePickerVisible && (

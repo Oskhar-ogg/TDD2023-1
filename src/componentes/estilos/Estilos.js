@@ -1,6 +1,7 @@
 const styles = {
   container: {
-    flex: 1
+    flex: 1,
+    alignContent: 'center',
   },
   logo: {
     fontSize: 20,
@@ -118,6 +119,23 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
+  Card: {
+    width: '150%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  input:{
+    borderWidth: 2,
+    borderColor: 'blue',
+    borderRadius: 8,
+    padding: 10,
+    fontSize: 16,  
+  },
+  map:{
+    width: '100%',
+    height: '100%',
+  }
 };
 
 export default styles;

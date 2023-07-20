@@ -1,135 +1,36 @@
-import React from 'react';
+import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import MapView, {Marker} from 'react-native-maps';
+import styles from '../../componentes/estilos/Estilos';
 
 const Mas = () => {
+
+    const [origen, setOrigen] = React.useState({
+        latitude: -36.744022,
+        longitude: -73.083476,
+    });
+
     return (
-      <View>
-        <Text>MAS FUNCIONANDO</Text>
-      </View>
+      <View style = {styles.container}>
+        <MapView style = {styles.map}
+        initialRegion={{
+            latitude: origen.latitude,
+            longitude: origen.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+        }}
+          >
+            <Marker
+            draggable 
+            coordinate={origen}
+            onDragEnd={ (direccion) => setOrigen(direccion.nativeEvent.coordinate)}>
+              
+            </Marker>
+        </MapView>
+                </View>
     );
   };
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1
-    },
-    topBar: {
-      backgroundColor: '#08546c',
-      padding: 16,
-      flexDirection: 'row',
-      justifyContent: 'flex-start',
-      alignItems: 'baseline',
-    },
-    logo: {
-      fontSize: 20,
-      alignContent: 'center',
-      fontWeight: 'bold',
-      color: '#fff',
-    },
-    appName: {
-      fontSize: 18,
-      alignItems: 'center',
-    },
-    login: {
-      fontSize: 16,
-    },
-    TopContainer:{
-      flex: 1,  
-      backgroundColor: '#022534',
-      alignContent: 'center',
-      justifyContent: 'center',
-      
-    },
-    imageContainer:{
-      flex: 1,
-      paddingHorizontal: 20,
-      justifyContent: 'center',
-    },
-    image: {
-      flex: 0.67,
-      width: 355,
-      height: 225,
-      borderRadius: 17,
-      borderWidth: 1,
-      overflow: 'hidden',
-      borderColor : '#fff',
-      resizeMode: 'cover',
-    },
   
-    BottomContainer:{
-      flex: 1,
-      backgroundColor: '#022534',
-      alignContent: 'center',
-      justifyContent: 'center',
-      flexDirection: 'column',
-    },
-    Text:{  
-      color: '#FFFFFF',
-      fontSize: 20, 
-      fontWeight: 'bold',
-      textAlign: 'center',
-    },
-    Text2:{  
-      color: '#fff',
-      fontSize: 20, 
-      fontWeight: 'bold',
-      textAlign: 'center',
-    },
-    TextCard:{  
-      color: '#FFFFFF',
-      fontSize: 20, 
-      fontWeight: 'bold',
-      textAlign: 'center',
-      textAlignVertical: 'top',
-    },
-    TextCardBottom:{  
-      color: 'green',
-      fontSize: 20, 
-      fontWeight: 'bold',
-      textAlign: 'center',
-      textAlignVertical: 'bottom',
-    },
-    TextCardBottom2:{  
-      color: 'red',
-      fontSize: 20, 
-      fontWeight: 'bold',
-      textAlign: 'center',
-      textAlignVertical: 'bottom',
-    },
-    textContainer: {
-      flex: 1,
-      justifyContent: 'center',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)', // Color de fondo semi-transparente
-    },
-    bottomBar: {
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      alignItems: 'center',
-      backgroundColor: '#08546c',
-      height: 50,
-    },
-    button: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      
-    },
-    buttonText: {
-      fontSize: 14,
-      fontWeight: 'bold',
-      color: '#ffffff',
-    },
-    roundButton1: {
-      width: 65,
-      height: 65,
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 3,
-      borderRadius: 50,
-      backgroundColor: '#033342',
-      borderColor: '#fff',
-      borderWidth: 2,
-    }
-  });
   
   
 export default Mas;
