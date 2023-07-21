@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity} from 'react-native';
+import { View, TouchableOpacity} from 'react-native';
 import { Agenda, LocaleConfig } from 'react-native-calendars';
 import { getAgenda } from '../../../api'; 
-import { Card } from 'react-native-paper';
+import { Text, Card } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../../src/componentes/estilos/Estilos';
 import { AntDesign } from '@expo/vector-icons';
@@ -127,8 +127,7 @@ const Calendario = () => {
   
       return (
         <TouchableOpacity style={{ marginRight: 10, marginTop: 17 }}>
-          <Card>
-            <Card.Content>
+              <Card>
               <View
                 style={{
                   flexDirection: 'column',
@@ -141,8 +140,7 @@ const Calendario = () => {
                 <Text>Hora: {agenda_hora}</Text>
                 <Text>Fecha: {new Date(agenda_fecha).toLocaleDateString()}</Text>
               </View>
-            </Card.Content>
-          </Card>
+              </Card>
         </TouchableOpacity>
       );
     }
@@ -150,15 +148,7 @@ const Calendario = () => {
   const renderItem = (item) => {
     return <Reservation item={item} />;
   };
-  const renderEmptyDate = () => {
-    return (
-      <Card>
-        <Card.Content>
-          <Text>No hay citas agendadas para hoy</Text>
-        </Card.Content>
-      </Card> 
-    );
-  };  
+ 
   return (
     <View style={{ flex: 1 }}>
       <Agenda
@@ -166,7 +156,6 @@ const Calendario = () => {
         loadItemsForMonth={cargarItems}
         selected={new Date().toISOString().split('T')[0]}
         renderItem={renderItem}
-        renderEmptyDate={renderEmptyDate}
       />
     <View style={styles.bottomBar}>
         <TouchableOpacity style={styles.button} onPress={handleInicioPress}>
