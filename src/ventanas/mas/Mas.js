@@ -1,36 +1,74 @@
-import * as React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import MapView, {Marker} from 'react-native-maps';
+import React from 'react';
+import { View, TouchableOpacity, Text, StatusBar } from 'react-native';
+import { ListItem, Icon } from '@rneui/themed';
+import { useNavigation } from '@react-navigation/native';
 import styles from '../../componentes/estilos/Estilos';
+import { AntDesign } from '@expo/vector-icons';
 
-const Mas = () => {
+const Opciones = () => {
 
-    const [origen, setOrigen] = React.useState({
-        latitude: -36.744022,
-        longitude: -73.083476,
-    });
+const navigation = useNavigation();
+const handleInicioPress = () => {
+navigation.navigate('MDIAPP V0.8');
+};
+const handleInventarioPress = () => {
+navigation.navigate('Inventario');
+};
+const handleAgendaPress = () => {
+navigation.navigate('Agenda');
+};
+const handleMasPress = () => {
+navigation.navigate('Más');
+};
+const handleBitacoraPress = () => {
+navigation.navigate('Bitácora');
+};
 
-    return (
-      <View style = {styles.container}>
-        <MapView style = {styles.map}
-        initialRegion={{
-            latitude: origen.latitude,
-            longitude: origen.longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-        }}
-          >
-            <Marker
-            draggable 
-            coordinate={origen}
-            onDragEnd={ (direccion) => setOrigen(direccion.nativeEvent.coordinate)}>
-              
-            </Marker>
-        </MapView>
-                </View>
-    );
-  };
-  
-  
-  
-export default Mas;
+  // Array con las opciones
+  const opciones = [
+    'Guardar boletas',
+    'Guardar facturas',
+    'Lista de clientes',
+    'Inventario de herramientas',
+    'Mapa',
+    'Perfil del especialista',
+    'Configuraciones de la aplicación',
+  ];
+
+  return (
+    <View style = {styles.OptionsContainer} >
+        {/* Iterar sobre el array de opciones */}
+        {opciones.map((opcion, index) => (
+
+          <TouchableOpacity>
+          <ListItem key={index} bottomDivider>
+            <Icon name="chevron-right" type="evilicon" color="#000" />
+            <ListItem.Content>
+              <ListItem.Title>{opcion}</ListItem.Title>
+            </ListItem.Content>
+          </ListItem>
+          </TouchableOpacity>
+        ))}
+
+        <View style={styles.bottomBar}>
+        <TouchableOpacity style={styles.button} onPress={handleInicioPress}>
+          <AntDesign name="home" size={24} color="#ffffff" /><Text style={styles.buttonText}>Inicio</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={handleInventarioPress}>
+          <AntDesign name="database" size={24} color="#FFFFFF" /><Text style={styles.buttonText}>Inventario</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.roundButton1} onPress={handleBitacoraPress}>
+          <AntDesign name="form" size={24} color="#ffffff" /><Text style={styles.buttonText}>Bitácora</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={handleAgendaPress}>
+          <AntDesign name="calendar" size={24} color="#ffffff" /><Text style={styles.buttonText}>Agenda</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={handleMasPress}>
+          <AntDesign name="bars" size={24} color="#FFFFFF" /><Text style={styles.buttonText}>Más</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+export default Opciones;

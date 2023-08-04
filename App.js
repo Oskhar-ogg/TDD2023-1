@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, AntDesign, FontAwesome } from '@expo/vector-icons';
 
 import Inicio from './src/ventanas/Inicio';
 import Calendario from './src/ventanas/agenda/Calendario';
@@ -22,14 +22,27 @@ const App = () => {
   return (
 <NavigationContainer>
   <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: "#08546c" }, headerTitleStyle: { color: "#ffffff" }, headerTitleAlign: "center" }}>
-    <Stack.Screen name="MDIAPP V0.8" component={Inicio} />
+    <Stack.Screen name="MDIAPP V0.8" component={Inicio} options={({ navigation }) => ({
+      headerRight: () => (
+        <View style={{ flexDirection: 'row', marginRight: 15 }}>
+        <TouchableOpacity onPress={() => handleMicrophonePress()}>
+        <Ionicons name="mic-circle-sharp" size={35} color="white" />
+        </TouchableOpacity>
+      </View>
+      ),
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => navigation.navigate('Agregar Cita')}>
+          <Ionicons name="log-out-sharp" size={30} color="#ffffff"  />
+        </TouchableOpacity>
+      ),
+    })}/>
     <Stack.Screen name="Inventario" component={Inventario} />
     <Stack.Screen name="Agregar Cita" component={AgregarCita} />
     <Stack.Screen name="Agenda" component={Calendario} 
     options={({ navigation }) => ({
       headerRight: () => (
         <TouchableOpacity onPress={() => navigation.navigate('Agregar Cita')}>
-          <Ionicons name="add-circle-sharp" size={36} color="#ffffff"  />
+          <FontAwesome name="calendar-plus-o" size={30} color="white" />
         </TouchableOpacity>
       ),
     })}/>
@@ -41,7 +54,7 @@ const App = () => {
       options={({ navigation }) => ({
         headerRight: () => (
           <TouchableOpacity onPress={() => navigation.navigate('Agregar Bitácora')}>
-            <Ionicons name="add-circle-sharp" size={36} color="#ffffff"  />
+            <AntDesign name="addfile" size={30} color="white" />
           </TouchableOpacity>
         ),
       })}

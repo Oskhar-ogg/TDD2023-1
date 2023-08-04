@@ -1,5 +1,5 @@
-const API = 'http://10.0.2.2:3000/bitacora';
-const API2 = 'http://10.0.2.2:3000/agenda';
+const API = 'http://146.83.198.35:1386/bitacora';
+const API2 = 'http://146.83.198.35:1386/agenda';
 
 export const getBitacora = async () => {
   try {

@@ -7,6 +7,9 @@ import styles from '../../componentes/estilos/Estilos';
 
 const PlaceholderImage = require('../../recursosvisuales/albin_trotter.jpg');
 const PlaceholderImage2 = require('../../recursosvisuales/baxi.jpg');
+const PlaceholderImage3 = require('../../recursosvisuales/baxi.jpg');
+const PlaceholderImage4 = require('../../recursosvisuales/baxi.jpg');
+const PlaceholderImage5 = require('../../recursosvisuales/baxi.jpg');
 
 const  Inventario = () => {
   
@@ -50,10 +53,67 @@ navigation.navigate('Bitácora');
     <Text style={{ marginBottom: 10 }}>Combustibles: gas licuado, gas natural, petróleo y electricidad.</Text>
 </Card>
 
-        </TouchableOpacity>
-        <TouchableOpacity onPress={ () => Alert.alert('Debe llevar a una selección de calefonts por marca')}>
-        <Card>
+  </TouchableOpacity>
+  <TouchableOpacity onPress={ () => Alert.alert('Debe llevar a una selección de calefonts por marca')}>
+  <Card>
   <Card.Title>CALEFONTS</Card.Title>
+  <Card.Divider />
+  <Card.Image style={{ 
+    flex: 1,
+    width: 320,
+    height: 440,
+    borderRadius: 18,
+    justifyContent: 'center',
+    alignItems: 'stretch',}}>
+    <Image source={PlaceholderImage} style = {{maxWidth: 320, maxHeight: 440}}/>
+  </Card.Image>
+  <Card.Divider />
+  <Text style={{ marginBottom: 10 }}>Calefonts de uso domiciliario a gas de tipo tiro forzado y tiro natural.</Text>
+    <Text style={{ marginBottom: 10 }}> Combustibles: gas licuado y gas natural.
+  </Text>
+</Card>
+</TouchableOpacity>
+<TouchableOpacity onPress={ () => Alert.alert('Debe llevar a una selección de calefonts por marca')}>
+  <Card>
+  <Card.Title>AIRE ACONDICIONADO</Card.Title>
+  <Card.Divider />
+  <Card.Image style={{ 
+    flex: 1,
+    width: 320,
+    height: 440,
+    borderRadius: 18,
+    justifyContent: 'center',
+    alignItems: 'stretch',}}>
+    <Image source={PlaceholderImage} style = {{maxWidth: 320, maxHeight: 440}}/>
+  </Card.Image>
+  <Card.Divider />
+  <Text style={{ marginBottom: 10 }}>Calefonts de uso domiciliario a gas de tipo tiro forzado y tiro natural.</Text>
+    <Text style={{ marginBottom: 10 }}> Combustibles: gas licuado y gas natural.
+  </Text>
+</Card>
+</TouchableOpacity>
+<TouchableOpacity onPress={ () => Alert.alert('Debe llevar a una selección de calefonts por marca')}>
+  <Card>
+  <Card.Title>BOMBAS DE AGUA</Card.Title>
+  <Card.Divider />
+  <Card.Image style={{ 
+    flex: 1,
+    width: 320,
+    height: 440,
+    borderRadius: 18,
+    justifyContent: 'center',
+    alignItems: 'stretch',}}>
+    <Image source={PlaceholderImage} style = {{maxWidth: 320, maxHeight: 440}}/>
+  </Card.Image>
+  <Card.Divider />
+  <Text style={{ marginBottom: 10 }}>Calefonts de uso domiciliario a gas de tipo tiro forzado y tiro natural.</Text>
+    <Text style={{ marginBottom: 10 }}> Combustibles: gas licuado y gas natural.
+  </Text>
+</Card>
+</TouchableOpacity>
+<TouchableOpacity onPress={ () => Alert.alert('Debe llevar a una selección de calefonts por marca')}>
+  <Card>
+  <Card.Title>REDES DE GAS</Card.Title>
   <Card.Divider />
   <Card.Image style={{ 
     flex: 1,

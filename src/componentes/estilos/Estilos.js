@@ -1,33 +1,36 @@
+import { Dimensions } from 'react-native';
+
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
+
 const styles = {
   container: {
     flex: 1,
-    alignContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#022534',
   },
   logo: {
-    fontSize: 20,
-    alignContent: 'center',
+    fontSize: 24,
     fontWeight: 'bold',
     color: '#fff',
   },
   appName: {
-    fontSize: 18,
-    alignItems: 'center',
+    fontSize: 22,
+    color: '#fff',
   },
   login: {
-    fontSize: 16,
+    fontSize: 18,
+    color: '#fff',
   },
-  TopContainer:{
-    flex: 1,  
-    backgroundColor: '#022534',
-    alignContent: 'center',
-    justifyContent: 'center',
-    
-  },
-  imageContainer:{
+  TopContainer: {
     flex: 1,
-    paddingHorizontal: 20,
     justifyContent: 'center',
-    alignItems: 'stretch',
+    alignItems: 'center',
+  },
+  imageContainer: {
+    flex: 0.9,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   image: {
     flex: 0.67,
@@ -40,48 +43,51 @@ const styles = {
     resizeMode: 'cover',
   },
 
-  BottomContainer:{
+  BottomContainer: {
     flex: 1,
-    backgroundColor: '#022534',
-    alignContent: 'center',
     justifyContent: 'center',
-    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
   },
-  Text:{  
+  Text: {
     color: '#FFFFFF',
-    fontSize: 20, 
+    fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  Text2:{  
+  Text2: {
     color: '#fff',
-    fontSize: 20, 
+    fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  TextCard:{  
+  TextCard: {
     color: '#FFFFFF',
-    fontSize: 20, 
+    fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
     textAlignVertical: 'top',
   },
-  TextCardBottom:{  
+  TextCardBottom: {
     color: 'green',
-    fontSize: 20, 
+    fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
     textAlignVertical: 'bottom',
   },
-  TextCardBottom2:{  
+  TextCardBottom2: {
     color: 'red',
-    fontSize: 20, 
+    fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
     textAlignVertical: 'bottom',
   },
   textContainer: {
-    flex: 1,
+    position: 'relative',
+    bottom: -30,
+    left: 0,
+    right: 0,
+    padding: 8,
     justifyContent: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Color de fondo semi-transparente
   },
@@ -91,12 +97,23 @@ const styles = {
     alignItems: 'center',
     backgroundColor: '#08546c',
     height: 50,
+    position: 'absolute', // Agregar posición absoluta
+    bottom: 0, // Alinear en la parte inferior
+    left: 0, // Alinear en la izquierda
+    right: 0, // Alinear en la derecha
   },
   button: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-
+  },
+  buttonInit:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 50,
+    borderWidth: 3, // Ancho del borde
+    borderColor: '#000000', //
   },
   buttonText: {
     fontSize: 14,
@@ -108,34 +125,54 @@ const styles = {
     height: 80,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 5,
     borderRadius: 40,
     backgroundColor: '#033342',
     borderColor: '#fff',
     borderWidth: 2,
   },
   CenterContainer: {
-    flex: 1,
+    flex: screenWidth * 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   Card: {
-    width: '150%',
-    height: '100%',
+    width: screenWidth * 0.9,
+    padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 10,
   },
-  input:{
+  Cardinit: {
+    width: screenWidth * 1,
+    height: screenHeight * 0.45,
+    margin: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#033342',
+    borderRadius: 0,
+    borderColor: '#022534',
+    borderWidth: 15,
+  },
+  input: {
     borderWidth: 2,
     borderColor: 'blue',
     borderRadius: 8,
     padding: 10,
-    fontSize: 16,  
+    fontSize: 18,
+    width: screenWidth * 0.8,
+    marginVertical: 10,
   },
-  map:{
+  map: {
     width: '100%',
     height: '100%',
-  }
+  },
+  OptionsContainer: {
+    flex: 1,
+    width: screenWidth * 1,
+    alignItems: 'left',
+    backgroundColor: '#ffffff',
+  },
 };
 
 export default styles;
