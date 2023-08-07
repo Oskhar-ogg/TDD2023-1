@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity} from 'react-native';
+import { View, TouchableOpacity, Alert} from 'react-native';
 import { Agenda, LocaleConfig } from 'react-native-calendars';
-import { getAgenda } from '../../../api'; 
+import { getAgenda,  deleteAgenda} from '../../../api'; 
 import { Text, Card } from 'react-native-paper';
+import {Button} from '@rneui/themed';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../../src/componentes/estilos/Estilos';
 import { AntDesign } from '@expo/vector-icons';
@@ -75,6 +76,21 @@ const Calendario = () => {
   const handleBitacoraPress = () => {
     navigation.navigate('Bitácora');
   };
+  const handleDelete = async (agenda_id) => {
+    Alert.alert("Eliminar Cita", "¿Estás seguro que deseas eliminar esta cita?", [
+      {
+        text: "Cancelar",
+        onPress: () => console.log("Cancel Pressed"),
+      },
+      {
+        text: "Eliminar",
+        onPress: async () => {
+          await deleteAgenda(agenda_id);
+          console.log('Cita eliminada correctamente');
+      },
+      },
+    ])
+};
 
   const [items, setItems] = useState({});
 
@@ -96,6 +112,7 @@ const Calendario = () => {
           agenda_id: agenda.agenda_id,
           agenda_cliente: agenda.agenda_cliente,
           agenda_direccion: agenda.agenda_direccion,
+          agenda_motivo: agenda.agenda_motivo,
           agenda_hora: agenda.agenda_hora,
           agenda_fecha: agenda.agenda_fecha,
         });
@@ -120,6 +137,7 @@ const Calendario = () => {
         agenda_id,
         agenda_cliente,
         agenda_direccion,
+        agenda_motivo,
         agenda_hora,
         agenda_fecha,
       } = item;
@@ -137,9 +155,29 @@ const Calendario = () => {
                 <Text>Cita N°: {agenda_id}</Text>
                 <Text>Cliente: {agenda_cliente}</Text>
                 <Text>Lugar: {agenda_direccion}</Text>
+                <Text>Motivo: {agenda_motivo}</Text>
                 <Text>Hora: {agenda_hora}</Text>
                 <Text>Fecha: {new Date(agenda_fecha).toLocaleDateString()}</Text>
               </View>
+              <Button
+                icon={{ name: 'trash', type: 'font-awesome', size: 15, color: 'white' }}
+                iconCenter
+                iconContainerStyle={{ marginLeft: 5 }}
+                titleStyle={{ fontWeight: '700' }}
+                buttonStyle={{
+                  backgroundColor: 'rgba(199, 43, 98, 1)',
+                  borderColor: 'transparent',
+                  borderWidth: 2,
+                  borderRadius: 50,
+                }}
+                containerStyle={{
+                  width: 50,
+                  marginHorizontal: 50,
+                  marginVertical: 10,
+                  alignContent: 'right',
+                }}
+                onPress={() => handleDelete(agenda_id)} // Corregir el argumento de la función handleDelete
+              />
               </Card>
         </TouchableOpacity>
       );
@@ -150,12 +188,13 @@ const Calendario = () => {
   };
  
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{flex: 1}}>
       <Agenda
         items={items}
         loadItemsForMonth={cargarItems}
         selected={new Date().toISOString().split('T')[0]}
         renderItem={renderItem}
+
       />
     <View style={styles.bottomBar}>
         <TouchableOpacity style={styles.button} onPress={handleInicioPress}>

@@ -34,6 +34,7 @@ export default function AgregarCita () {
     const [citaData, setCitaData] = useState({
         agenda_cliente: '',
         agenda_direccion: '',
+        agenda_motivo: '',
         agenda_hora: '00:00', // Formato HH:mm
         agenda_fecha: new Date().toISOString().split('T')[0], // Formato yyyy-mm-dd
 
@@ -110,6 +111,13 @@ export default function AgregarCita () {
             placeholder="Lugar Coordinado"
             value={citaData.agenda_direccion}
             onChangeText={(text) => handleInputChange('agenda_direccion', text)}
+            />
+            <Card.Divider />
+            <TextInput
+            style={styles.input}
+            placeholder="Motivo de la cita"
+            value={citaData.agenda_motivo}
+            onChangeText={(text) => handleInputChange('agenda_motivo', text)}
             />
             <Card.Divider />
             <Text>Fecha de la cita</Text>
