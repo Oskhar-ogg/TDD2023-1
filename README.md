@@ -22,21 +22,21 @@ Primero debe estar iniciado el [BackEnd](https://github.com/Oskhar-ogg/TDD2023-B
 ### Instalación
 
 1. **Clonar el Repositorio**:
-
-'git clone https://github.com/Oskhar-ogg/TDD2023-1.git'
-
+```bash
+   git clone https://github.com/Oskhar-ogg/TDD2023-1.git'
+```
 2. **Acceder al Directorio del Proyecto**:
-
-'cd TDD2023-1'
-
+```bash
+   'cd TDD2023-1'
+```
 3. **Instalar Dependencias**:
-
-'npm install'
-
+```bash
+   'npm install'
+```
 4. **Iniciar la Aplicación**:
-
-'npm start'
-
+```bash
+   'npm start'
+```
 5. **Menu Metro**:
 
  ingresar la letra 'a', como es la primera vez que utilizarás expo, te preguntará si deseas instalarlo.
