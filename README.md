@@ -15,7 +15,8 @@ El proyecto funciona con las siguientes versiones de software:
 ## Para iniciar Frontend
 
 ### Requisitos Previos
-
+### Para que la aplicación reciba los datos
+Primero debe estar iniciado el [BackEnd](https://github.com/Oskhar-ogg/TDD2023-BACKEND) de MDIAPP
 - **Node.js**: Asegúrate de tener Node.js 18.2 instalado en tu sistema. Puedes descargarlo desde [nodejs.org](https://nodejs.org/).
 - **Android Studio: Asegúrate de tener Andorid Studio o un terminal Android con depuración USB previamente instalado, Si no lo tienes, puedes hacerlo desde aquí [Android Studio](https://developer.android.com/studio")
 ### Instalación
@@ -44,5 +45,4 @@ El proyecto funciona con las siguientes versiones de software:
  El frontend estaría corriendo correctamente en el terminal que estes usando de prueba
 
 
-### Para que la aplicación reciba los datos
-Primero debe estar iniciado el [BackEnd](https://github.com/Oskhar-ogg/TDD2023-BACKEND")de MDIAPP
+
