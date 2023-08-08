@@ -89,6 +89,7 @@ export default function Bitacora() {
 
   return (
     <View style={styles.container}>
+      <View>
       <FlatList 
         data={bitacora}
         keyExtractor={(item) => item.bitacora_id.toString()}
@@ -103,6 +104,7 @@ export default function Bitacora() {
             <Text style={{ color: '#000000', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', fontSize: 16 }}>${item.bitacora_valor_cobrado}</Text>
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
               <Button
+                title="Eliminar Bitácora"
                 icon={{ name: 'trash', type: 'font-awesome', size: 15, color: 'white' }}
                 iconCenter
                 iconContainerStyle={{ marginLeft: 5 }}
@@ -114,7 +116,7 @@ export default function Bitacora() {
                   borderRadius: 50,
                 }}
                 containerStyle={{
-                  width: 50,
+                  width: 175,
                   marginHorizontal: 50,
                   marginVertical: 10,
                 }}
@@ -127,6 +129,7 @@ export default function Bitacora() {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         nestedScrollEnabled={true} // Habilitar desplazamiento interno de FlatList
       />
+      </View>
       <View style={styles.bottomBar}>
         <TouchableOpacity style={styles.button} onPress={handleInicioPress}>
           <AntDesign name="home" size={24} color="#ffffff" /><Text style={styles.buttonText}>Inicio</Text>

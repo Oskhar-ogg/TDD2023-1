@@ -43,7 +43,7 @@ const Tarjeta = () => {
   };
 
   return (
-    <ImageBackground source={require('./../imagenes/tarjeta.jpg')} style={styles.image}>
+    <ImageBackground source={require('../imagenes/tarjeta.jpg')} style={styles.image}>
       <View style={styles.textContainer}>
         <Text style={styles.TextCard}>BALANCE DEL MES</Text>
         <Text style={styles.TextCardBottom}>Ingreso Mes = ${montoMes}</Text>
@@ -86,6 +86,10 @@ export default function Inicio() {
     navigation.navigate('Agregar Cita');
   };
 
+  const handleListaClientesPress = () => {
+    navigation.navigate('Lista Clientes');
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.TopContainer}>
@@ -116,10 +120,10 @@ export default function Inicio() {
         <Text style={styles.TextCard}></Text>
 
         <Button
-          icon={<FontAwesome name="upload" size={24} color="white" />}
+          icon={<FontAwesome name="user" size={24} color="white" />}
           style={styles.buttonInit}
-          title=" Subir Foto Ventas"
-          onPress={() => Alert.alert('Debe enviar a la ventana de subir archivo de ventas')}
+          title=" Lista de clientes"
+          onPress={handleListaClientesPress}
           color={'#08546c'}
           
         />

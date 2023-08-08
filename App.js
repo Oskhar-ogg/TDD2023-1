@@ -14,7 +14,8 @@ import Busqueda from './src/ventanas/busqueda/Busqueda';
 import ListaCalefont from './src/ventanas/inventario/ListaCalefont';
 import ListaCalderas from './src/ventanas/inventario/ListaCalderas';
 import AgregarCita from './src/ventanas/agenda/AgregarCita';
-
+import Login from './src/ventanas/login';
+import ListaClientes from './src/ventanas/mas/Listaclientes';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -31,7 +32,7 @@ const App = () => {
       </View>
       ),
       headerLeft: () => (
-        <TouchableOpacity onPress={() => navigation.navigate('Agregar Cita')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
           <Ionicons name="log-out-sharp" size={30} color="#ffffff"  />
         </TouchableOpacity>
       ),
@@ -62,6 +63,8 @@ const App = () => {
     <Stack.Screen name="Agregar Bitácora" component={AgregarBitacora} />
     <Stack.Screen name="Búsqueda" component={Busqueda} />
     <Stack.Screen name="Más" component={Mas} />
+    <Stack.Screen name="Login" component={Login} />
+    <Stack.Screen name="Lista Clientes" component={ListaClientes} />
   </Stack.Navigator>
 </NavigationContainer>
   );

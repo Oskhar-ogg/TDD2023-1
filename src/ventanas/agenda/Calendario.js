@@ -127,7 +127,7 @@ const Calendario = () => {
   useEffect(() => {
     cargarItems();
     console.log(setItems);
-    console.log('citas cargadas correctamente');
+    console.log('Citas cargadas correctamente');
   }, []);
 
   class Reservation extends React.PureComponent {
@@ -158,10 +158,10 @@ const Calendario = () => {
                 <Text>Motivo: {agenda_motivo}</Text>
                 <Text>Hora: {agenda_hora}</Text>
                 <Text>Fecha: {new Date(agenda_fecha).toLocaleDateString()}</Text>
-              </View>
-              <Button
-                icon={{ name: 'trash', type: 'font-awesome', size: 15, color: 'white' }}
-                iconCenter
+                <Button
+                title="Eliminar cita"
+                icon={{ name: 'trash', type: 'font-awesome', size: 20, color: 'white' }}
+                iconLeft
                 iconContainerStyle={{ marginLeft: 5 }}
                 titleStyle={{ fontWeight: '700' }}
                 buttonStyle={{
@@ -171,13 +171,15 @@ const Calendario = () => {
                   borderRadius: 50,
                 }}
                 containerStyle={{
-                  width: 50,
+                  width: 150,
                   marginHorizontal: 50,
                   marginVertical: 10,
                   alignContent: 'right',
                 }}
                 onPress={() => handleDelete(agenda_id)} // Corregir el argumento de la función handleDelete
               />
+              </View>
+              
               </Card>
         </TouchableOpacity>
       );
@@ -194,7 +196,12 @@ const Calendario = () => {
         loadItemsForMonth={cargarItems}
         selected={new Date().toISOString().split('T')[0]}
         renderItem={renderItem}
-
+        theme={{
+          agendaDayTextColor: 'blue',
+          agendaDayNumColor: 'blue',
+          agendaTodayColor: 'red',
+          agendaKnobColor: 'blue',
+        }}
       />
     <View style={styles.bottomBar}>
         <TouchableOpacity style={styles.button} onPress={handleInicioPress}>

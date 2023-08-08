@@ -1,5 +1,6 @@
 const API = 'http://146.83.198.35:1386/bitacora';
 const API2 = 'http://146.83.198.35:1386/agenda';
+const API3 = 'http://146.83.198.35:1386';
 
 export const getBitacora = async () => {
   try {
@@ -130,3 +131,86 @@ export const deleteAgenda = async (agenda_id) => {
     throw new Error(`Failed to delete agenda with id: ${agenda_id}`);
   }
 };
+
+export const getClienteHistoricoCaldera = async (cliente_id) => {
+  try {
+    const res = await fetch(`${API3}/mantenciones/caldera?cliente_id=${cliente_id}`);
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to fetch historico mantenciones caldera cliente');
+  }
+};
+
+export const getClienteHistoricoCalefont = async (cliente_id) => {
+  try {
+    const res = await fetch(`${API3}/mantenciones/calefont?cliente_id=${cliente_id}`);
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to fetch historico mantenciones calefont cliente');
+  }
+};
+
+
+export const saveMantencionesCaldera = async (mantencionesCalderaData) => {
+  try {
+    const res = await fetch(`${API3}/mantenciones/caldera`, {
+      method: 'POST',
+      headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(mantencionesCalderaData),
+    });
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to save mantenciones caldera');
+  }
+}
+
+export const saveMantencionesCalefont = async (mantencionesCalefontData) => {
+  try {
+    const res = await fetch(`${API3}/mantenciones/calefont`, {
+      method: 'POST',
+      headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(mantencionesCalefontData),
+    });
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to save mantenciones calefont');
+  }
+}
+
+export const getClientes = async () => {
+  try {
+    const res = await fetch(`${API3}/clientes`);
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to fetch clientes');
+  }
+}
+
+
+
+export const getMantencionesCaldera = async () => {
+  try {
+    const res = await fetch(`${API3}/mantenciones/calderas`);
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to fetch mantenciones caldera');
+  }
+}
+
+export const getMantencionesCalefont = async () => {
+  try {
+    const res = await fetch(`${API3}/mantenciones/calefonts`);
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to fetch mantenciones calefont');
+  }
+}
+
+

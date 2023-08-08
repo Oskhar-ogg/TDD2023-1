@@ -7,9 +7,9 @@ import styles from '../../componentes/estilos/Estilos';
 
 const PlaceholderImage = require('../../recursosvisuales/albin_trotter.jpg');
 const PlaceholderImage2 = require('../../recursosvisuales/baxi.jpg');
-const PlaceholderImage3 = require('../../recursosvisuales/baxi.jpg');
-const PlaceholderImage4 = require('../../recursosvisuales/baxi.jpg');
-const PlaceholderImage5 = require('../../recursosvisuales/baxi.jpg');
+const PlaceholderImage3 = require('../../recursosvisuales/AC.jpg');
+const PlaceholderImage4 = require('../../recursosvisuales/bagua.png');
+const PlaceholderImage5 = require('../../recursosvisuales/gas.png');
 
 const  Inventario = () => {
   
@@ -84,7 +84,7 @@ navigation.navigate('Bitácora');
     borderRadius: 18,
     justifyContent: 'center',
     alignItems: 'stretch',}}>
-    <Image source={PlaceholderImage} style = {{maxWidth: 320, maxHeight: 440}}/>
+    <Image source={PlaceholderImage3} style = {{maxWidth: 320, maxHeight: 440}}/>
   </Card.Image>
   <Card.Divider />
   <Text style={{ marginBottom: 10 }}>Calefonts de uso domiciliario a gas de tipo tiro forzado y tiro natural.</Text>
@@ -103,7 +103,7 @@ navigation.navigate('Bitácora');
     borderRadius: 18,
     justifyContent: 'center',
     alignItems: 'stretch',}}>
-    <Image source={PlaceholderImage} style = {{maxWidth: 320, maxHeight: 440}}/>
+    <Image source={PlaceholderImage4} style = {{maxWidth: 320, maxHeight: 440}}/>
   </Card.Image>
   <Card.Divider />
   <Text style={{ marginBottom: 10 }}>Calefonts de uso domiciliario a gas de tipo tiro forzado y tiro natural.</Text>
@@ -122,7 +122,7 @@ navigation.navigate('Bitácora');
     borderRadius: 18,
     justifyContent: 'center',
     alignItems: 'stretch',}}>
-    <Image source={PlaceholderImage} style = {{maxWidth: 320, maxHeight: 440}}/>
+    <Image source={PlaceholderImage5} style = {{maxWidth: 320, maxHeight: 440}}/>
   </Card.Image>
   <Card.Divider />
   <Text style={{ marginBottom: 10 }}>Calefonts de uso domiciliario a gas de tipo tiro forzado y tiro natural.</Text>
