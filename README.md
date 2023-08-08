@@ -27,15 +27,15 @@ Primero debe estar iniciado el [BackEnd](https://github.com/Oskhar-ogg/TDD2023-B
 ```
 2. **Acceder al Directorio del Proyecto**:
 ```bash
-   'cd TDD2023-1'
+   cd TDD2023-1
 ```
 3. **Instalar Dependencias**:
 ```bash
-   'npm install'
+   npm install
 ```
 4. **Iniciar la Aplicación**:
 ```bash
-   'npm start'
+   npm start
 ```
 5. **Menu Metro**:
 
