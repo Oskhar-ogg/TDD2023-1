@@ -22,9 +22,14 @@ Primero debe estar iniciado el [BackEnd](https://github.com/Oskhar-ogg/TDD2023-B
 ### Instalación
 
 1. **Clonar el Repositorio**:
+   via http
 ```bash
 git clone https://github.com/Oskhar-ogg/TDD2023-1.git'
 ```
+  via ssh
+```bash
+git@github.com:Oskhar-ogg/TDD2023-1.git
+```  
 2. **Acceder al Directorio del Proyecto**:
 ```bash
 cd TDD2023-1
