@@ -45,4 +45,4 @@ El proyecto funciona con las siguientes versiones de software:
 
 
 ### Para que la aplicación reciba los datos
-Primero debe estar iniciado el [Backend](https://github.com/Oskhar-ogg/TDD2023-BACKEND") de MDIAPP
+Primero debe estar iniciado el [BackEnd](https://github.com/Oskhar-ogg/TDD2023-BACKEND")de MDIAPP
