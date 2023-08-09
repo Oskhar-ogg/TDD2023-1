@@ -16,6 +16,9 @@ import ListaCalderas from './src/ventanas/inventario/ListaCalderas';
 import AgregarCita from './src/ventanas/agenda/AgregarCita';
 import Login from './src/ventanas/login';
 import ListaClientes from './src/ventanas/mas/Listaclientes';
+import AgregarCliente from './src/ventanas/mas/AgregarCliente';
+import Mantenimiento from './src/ventanas/mas/mantenimiento';
+import HistoricoCliente from './src/ventanas/mas/Historicocliente';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -63,8 +66,24 @@ const App = () => {
     <Stack.Screen name="Agregar Bitácora" component={AgregarBitacora} />
     <Stack.Screen name="Búsqueda" component={Busqueda} />
     <Stack.Screen name="Más" component={Mas} />
+    <Stack.Screen name="Mantenimiento" component={Mantenimiento} />
     <Stack.Screen name="Login" component={Login} />
-    <Stack.Screen name="Lista Clientes" component={ListaClientes} />
+    <Stack.Screen name="Lista Clientes" component={ListaClientes} options={({ navigation }) => ({
+      headerRight: () => (
+        <View style={{ flexDirection: 'row', marginRight: 15 }}>
+        <TouchableOpacity onPress={() => navigation.navigate('Agregar Clientes')}>
+        <Ionicons name="person-add" size={35} color="white" />
+        </TouchableOpacity>
+      </View>
+      ),
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => navigation.navigate('Mantenimiento')}>
+          <Ionicons name="hammer" size={30} color="#ffffff"  />
+        </TouchableOpacity>
+      ),
+    })}/>
+    <Stack.Screen name="Agregar Clientes" component={AgregarCliente} />
+    <Stack.Screen name="Historico Cliente" component={HistoricoCliente} />
   </Stack.Navigator>
 </NavigationContainer>
   );

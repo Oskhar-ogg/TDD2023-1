@@ -6,8 +6,6 @@ import styles from '../../../src/componentes/estilos/Estilos';
 import { AntDesign } from '@expo/vector-icons';
 import { Card, Text } from '@rneui/themed';
 import DateTimePickerAndroid from '@react-native-community/datetimepicker';
-
-
 export default function AgregarBitacora() {
 
   const [isSwitchOn, setIsSwitchOn] = useState(false);
@@ -35,8 +33,6 @@ export default function AgregarBitacora() {
   const handleBitacoraPress = () => {
     navigation.navigate('Bitácora');
   };
-
-
 
   const [bitacoraData, setBitacoraData] = useState({
     bitacora_title: '',
@@ -106,7 +102,7 @@ export default function AgregarBitacora() {
             value={bitacoraData.bitacora_description}
             onChangeText={(text) => handleInputChange('bitacora_description', text)}
           />
-          <Card.Divider />          
+          <Card.Divider />
           <TextInput
             style={styles.input}
             placeholder="Estado (Vigente / Finalizado/ En progreso)"

@@ -47,24 +47,17 @@ const navigation = useNavigation();
     }
   };
 
-  const HistoricoModal = ({visible, onclose, cliente_id}) => {
+ /**  const HistoricoModal = ({visible, onclose, cliente_id}) => {
         const [historicoCaldera, setHistoricoCaldera] = useState([]);
         const [historicoCalefont, setHistoricoCalefont] = useState([]);
 
-        const cargarHistorico = async () => {
-            try{
-                const historicoCalderaData = await getClienteHistoricoCaldera(cliente_id);
-                const historicoCalefontData = await getClienteHistoricoCalefont(cliente_id);
+        useEffect(() => {
+          cargarHistorico(cliente_id);
+        }, [cliente_id]);
 
-                setHistoricoCaldera(historicoCalderaData);
-                setHistoricoCalefont(historicoCalefontData);
-            } catch (error) {
-                console.error(error);
-            }
-        };
         return (
-          <Modal visible={visible} animationType="slide" transparent={true} onRequestClose={onclose}>
-            <View>
+          <Modal visible={visible} animationType="slide" onRequestClose={onclose}>
+            <View style = {styles.container}>
               <Button title="Cerrar" onPress={onclose} />
               <Text>Historico Caldera</Text>
               <FlatList
@@ -104,13 +97,25 @@ const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const [cliente_id, setCliente_id] = useState(0);
 
-  const handleHistoricoPress = (id) => {
-    setCliente_id(id);
-    setModalVisible(true);
-    cargarHistorico();
+  const cargarHistorico = async (cliente_id) => {
+    try {
+      const historicoCalderaData = await getClienteHistoricoCaldera(cliente_id);
+      const historicoCalefontData = await getClienteHistoricoCalefont(cliente_id);
+
+      setHistoricoCaldera(historicoCalderaData);
+      setHistoricoCalefont(historicoCalefontData);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
+  const handleVerHistoricoPress = async (cliente_id) => {
+    setCliente_id(cliente_id);
+    await cargarHistorico(cliente_id);
+    setModalVisible(true);
+  };
 
+*/
 
 
  const [refreshing, setRefreshing] = React.useState(false);
@@ -206,9 +211,8 @@ const navigation = useNavigation();
                 marginHorizontal: 50,
                 marginVertical: 10,
               }}
-              onPress={() => handleHistoricoPress(item.cliente_id)}
+              onPress={() => handleVerHistoricoPress(item.cliente_id)}
             />
-            <HistoricoModal visible={modalVisible} onclose={() => setModalVisible(false)} cliente_id={cliente_id} />
         </View>
         </Card>
 

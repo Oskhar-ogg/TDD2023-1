@@ -191,6 +191,20 @@ export const getClientes = async () => {
   }
 }
 
+export const saveCliente = async (clienteData) => {
+  try {
+    const res = await fetch(`${API3}/clientes`, {
+      method: 'POST',
+      headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(clienteData),
+    });
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to save cliente');
+  }
+}
+
 
 
 export const getMantencionesCaldera = async () => {

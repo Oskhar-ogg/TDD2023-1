@@ -32,6 +32,10 @@ export default function Mantenimiento() {
         navigation.navigate('Bitácora');
       };
 
+      const handleMasinformaciónPress = () => {
+        navigation.navigate('Historico Cliente');
+      };
+
     const [refreshing, setRefreshing] = React.useState(false);
     const [mantencionesCaldera, setMantencionesCaldera] = useState([]);
     const [mantencionesCalefont, setMantencionesCalefont] = useState([]);
@@ -69,6 +73,38 @@ export default function Mantenimiento() {
 
     return (
     <View style={styles.container}>
+      <View style={styles.CenterContainer}>
+        <Card style={styles.Card}>
+          <Card.Title>MANTENCIONES</Card.Title>
+          <Card.Divider />
+          <FlatList
+            data={mantencionesCaldera}
+            keyExtractor={(item) => item.mantenimiento_caldera_id.toString()}
+            renderItem={({ item }) => (
+                <Card style={styles.Card}>
+                  <Card.Title>Mantenimiento de calderas registrados</Card.Title>
+                  <Card.Divider />
+                  <Text>ID_caldera {item.caldera_id}</Text>
+                  <Text>Fecha {item.mantenimiento_fecha}</Text>
+                  <Text>Descripción {item.mantenimiento_descripcion}</Text>
+                  </Card>
+            )}
+            />
+            <FlatList
+            data={mantencionesCalefont}
+            keyExtractor={(item) => item.mantenimiento_calefont_id.toString()}
+            renderItem={({ item }) => (
+                <Card style={styles.Card}>
+                  <Card.Title>Mantenimiento de calefont registrados</Card.Title>
+                  <Card.Divider />
+                  <Text>ID_calefont {item.calefont_id}</Text>
+                  <Text>Fecha {item.mantenimiento_fecha}</Text>
+                  <Text>Descripción {item.mantenimiento_descripcion}</Text>
+                  </Card>
+            )}
+            />
+        </Card>
+      </View>
         <View style={styles.bottomBar}>
         <TouchableOpacity style={styles.button} onPress={handleInicioPress}>
           <AntDesign name="home" size={24} color="#ffffff" /><Text style={styles.buttonText}>Inicio</Text>
@@ -91,4 +127,3 @@ export default function Mantenimiento() {
     )
 
 }
-
