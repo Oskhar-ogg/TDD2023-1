@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { View, Button, TouchableOpacity, TextInput, Switch} from 'react-native';
+import { View, Button, TouchableOpacity, TextInput} from 'react-native';
 import {saveCliente} from '../../../api';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../../src/componentes/estilos/Estilos';
 import { AntDesign } from '@expo/vector-icons';
 import { Card, Text } from '@rneui/themed';
-import { Picker } from 'react-native-web';
 
 export default function AgregarCliente() {
 
@@ -19,6 +18,11 @@ export default function AgregarCliente() {
         navigation.navigate('Inventario');
     }
 
+    const handleBitacoraPress = () => {
+        navigation.navigate('Bitácora');
+    }
+
+
     const handleAgendaPress = () => {
         navigation.navigate('Agenda');
     }
@@ -28,13 +32,13 @@ export default function AgregarCliente() {
     }
 
     const handleClientePress = () => {
-        navigation.navigate('ListaClientes');
+        navigation.navigate('Lista Clientes');
     }
 
     const handleAgregarCliente = () => {
 
         try{
-        saveBitacora(clienteData);
+        saveCliente(clienteData);
         handleClientePress();
         }
         catch (error) {
@@ -44,7 +48,7 @@ export default function AgregarCliente() {
 
     const [clienteData, setClienteData] = useState({
         cliente_nombre: '',
-        cliente__direccion: '',
+        cliente_direccion: '',
         cliente_telefono: '',
         comuna_id: 1,
     });
@@ -55,7 +59,7 @@ export default function AgregarCliente() {
         <View style={styles.container}>
             <View style={styles.CenterContainer}>
                 <Card style={styles.Card}>
-                <Card.title>INGRESO DE UN NUEVO CLIENTE</Card.title>
+                <Card.Title>INGRESO DE UN NUEVO CLIENTE</Card.Title>
                 <Card.Divider />
                 <TextInput
                     style={styles.input}
@@ -73,7 +77,7 @@ export default function AgregarCliente() {
                 <Card.Divider />
                 <TextInput
                     style={styles.input}
-                    placeholder="Ingresa numero de telefono del cliente(SIN +56)"
+                    placeholder="Telefono cliente (SIN +56)"
                     value={clienteData.cliente_telefono}
                     onChangeText={(text) => handleInputChange('cliente_telefono', text)}
           />

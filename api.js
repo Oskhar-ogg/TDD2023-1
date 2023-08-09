@@ -209,7 +209,7 @@ export const saveCliente = async (clienteData) => {
 
 export const getMantencionesCaldera = async () => {
   try {
-    const res = await fetch(`${API3}/mantenciones/calderas`);
+    const res = await fetch(`${API3}/mantenciones/caldera`);
     return await res.json();
   } catch (error) {
     console.error(error);
@@ -219,7 +219,7 @@ export const getMantencionesCaldera = async () => {
 
 export const getMantencionesCalefont = async () => {
   try {
-    const res = await fetch(`${API3}/mantenciones/calefonts`);
+    const res = await fetch(`${API3}/mantenciones/calefont`);
     return await res.json();
   } catch (error) {
     console.error(error);
