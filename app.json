@@ -21,7 +21,7 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff",
-        "permissions": ["INTERNET"]
+        "permissions": ["CAMERA", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE", "READ_INTERNAL_STORAGE", "WRITE_INTERNAL_STORAGE", "NETWORK_STATE", "ACCESS_NETWORK_STATE", "ACCESS_WIFI_STATE", "INTERNET", "VIBRATE", "RECORD_AUDIO", "MODIFY_AUDIO_SETTINGS", "USE_FULL_SCREEN_INTENT", "WAKE_LOCK", "FOREGROUND_SERVICE", "RECEIVE_BOOT_COMP"]
       },
       "package": "com.oskharcc.tdd2023"
     },
@@ -30,7 +30,8 @@
     },
     "extra": {
       "eas": {
-        "projectId": "d92cbffb-b29d-4503-930e-fdfac3d55c30"
+        "projectId": "d92cbffb-b29d-4503-930e-fdfac3d55c30",
+        "apiUrl": "http://146.83.198.35:1386"
       }
     },
     "owner": "oskhar-cc"
