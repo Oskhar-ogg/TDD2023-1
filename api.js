@@ -1,10 +1,9 @@
-const API = 'http://146.83.198.35:1386/bitacora';
-const API2 = 'http://146.83.198.35:1386/agenda';
-const API3 = 'http://146.83.198.35:1386';
+
+const API = 'http://146.83.198.35:1386'
 
 export const getBitacora = async () => {
   try {
-    const res = await fetch(API);
+    const res = await fetch(`${API}/bitacora`);
     return await res.json();
   } catch (error) {
     console.error(error);
@@ -14,7 +13,7 @@ export const getBitacora = async () => {
 
 export const getBitacoras = async (bitacora_id) => {
   try {
-    const res = await fetch(`${API}/${bitacora_id}`);
+    const res = await fetch(`${API}/bitacora/${bitacora_id}`);
     return await res.json();
   } catch (error) {
     console.error(error);
@@ -24,7 +23,7 @@ export const getBitacoras = async (bitacora_id) => {
 
 export const saveBitacora = async (bitacoraData) => {
   try {
-    const res = await fetch(API, {
+    const res = await fetch(`${API}/bitacora`, {
       method: 'POST',
       headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
       body: JSON.stringify(bitacoraData),
@@ -39,7 +38,7 @@ export const saveBitacora = async (bitacoraData) => {
 export const deleteBitacora = async (bitacora_id) => {
   try {
     console.log('Eliminar bitacora con id:', bitacora_id);
-    const res = await fetch(`${API}/${bitacora_id}`, {
+    const res = await fetch(`${API}/bitacora/${bitacora_id}`, {
       method: 'DELETE',
     });
     return await res.json();
@@ -87,7 +86,7 @@ export const updateBitacora = async (bitacora_id, bitacoraData) => {
 
 export const getAgenda = async () => {
   try {
-    const res = await fetch(API2);
+    const res = await fetch(`${API}/agenda`);
     return await res.json();
   } catch (error) {
     console.error(error);
@@ -97,7 +96,7 @@ export const getAgenda = async () => {
 
 export const getAgendas = async (agenda_id) => {
   try {
-    const res = await fetch(`${API2}/${agenda_id}`);
+    const res = await fetch(`${API}/agenda/${agenda_id}`);
     return await res.json();
   } catch (error) {
     console.error(error);
@@ -107,7 +106,7 @@ export const getAgendas = async (agenda_id) => {
 
 export const saveAgenda = async (agendaData) => {
   try {
-    const res = await fetch(API2, {
+    const res = await fetch(`${API}/agenda`, {
       method: 'POST',
       headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
       body: JSON.stringify(agendaData),
@@ -122,7 +121,7 @@ export const saveAgenda = async (agendaData) => {
 export const deleteAgenda = async (agenda_id) => {
   try {
     console.log('Eliminar agenda con id:', agenda_id);
-    const res = await fetch(`${API2}/${agenda_id}`, {
+    const res = await fetch(`${API}/agenda/${agenda_id}`, {
       method: 'DELETE',
     });
     return await res.json();
@@ -134,7 +133,7 @@ export const deleteAgenda = async (agenda_id) => {
 
 export const getClienteHistoricoCaldera = async (cliente_id) => {
   try {
-    const res = await fetch(`${API3}/mantenciones/caldera?cliente_id=${cliente_id}`);
+    const res = await fetch(`${API}/mantenciones/caldera?cliente_id=${cliente_id}`);
     return await res.json();
   } catch (error) {
     console.error(error);
@@ -144,7 +143,7 @@ export const getClienteHistoricoCaldera = async (cliente_id) => {
 
 export const getClienteHistoricoCalefont = async (cliente_id) => {
   try {
-    const res = await fetch(`${API3}/mantenciones/calefont?cliente_id=${cliente_id}`);
+    const res = await fetch(`${API}/mantenciones/calefont?cliente_id=${cliente_id}`);
     return await res.json();
   } catch (error) {
     console.error(error);
@@ -155,7 +154,7 @@ export const getClienteHistoricoCalefont = async (cliente_id) => {
 
 export const saveMantencionesCaldera = async (mantencionesCalderaData) => {
   try {
-    const res = await fetch(`${API3}/mantenciones/caldera`, {
+    const res = await fetch(`${API}/mantenciones/caldera`, {
       method: 'POST',
       headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
       body: JSON.stringify(mantencionesCalderaData),
@@ -169,7 +168,7 @@ export const saveMantencionesCaldera = async (mantencionesCalderaData) => {
 
 export const saveMantencionesCalefont = async (mantencionesCalefontData) => {
   try {
-    const res = await fetch(`${API3}/mantenciones/calefont`, {
+    const res = await fetch(`${API}/mantenciones/calefont`, {
       method: 'POST',
       headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
       body: JSON.stringify(mantencionesCalefontData),
@@ -183,7 +182,7 @@ export const saveMantencionesCalefont = async (mantencionesCalefontData) => {
 
 export const getClientes = async () => {
   try {
-    const res = await fetch(`${API3}/clientes`);
+    const res = await fetch(`${API}/clientes`);
     return await res.json();
   } catch (error) {
     console.error(error);
@@ -193,7 +192,7 @@ export const getClientes = async () => {
 
 export const saveCliente = async (clienteData) => {
   try {
-    const res = await fetch(`${API3}/clientes`, {
+    const res = await fetch(`${API}/clientes`, {
       method: 'POST',
       headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
       body: JSON.stringify(clienteData),
@@ -209,7 +208,7 @@ export const saveCliente = async (clienteData) => {
 
 export const getMantencionesCaldera = async () => {
   try {
-    const res = await fetch(`${API3}/mantenciones/caldera`);
+    const res = await fetch(`${API}/mantenciones/caldera`);
     return await res.json();
   } catch (error) {
     console.error(error);
@@ -219,7 +218,7 @@ export const getMantencionesCaldera = async () => {
 
 export const getMantencionesCalefont = async () => {
   try {
-    const res = await fetch(`${API3}/mantenciones/calefont`);
+    const res = await fetch(`${API}/mantenciones/calefont`);
     return await res.json();
   } catch (error) {
     console.error(error);
