@@ -1,29 +1,15 @@
 {
   "cli": {
-    "version": ">= 4.1.2"
+    "version": ">=4.1.1"
   },
   "build": {
-    "development": {
-      "distribution": "internal",
-      "developmentClient": true,
-      
+    "production": {
       "android": {
-        "gradleCommand": ":app:assembleRelease",
         "buildType": "apk"
-
+      },
+      "env": {
+        "API_URL": "http://34.0.52.250:3000"
       }
-    },
-    "preview": {
-      "distribution": "internal"
-    },
-    "production": {
-
-    }
-  },
-  "submit": {
-    "production": {
-      
-
     }
   }
 }

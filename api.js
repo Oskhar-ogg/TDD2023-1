@@ -1,5 +1,5 @@
 
-const API = 'http://146.83.198.35:1386'
+const API = 'http://34.0.52.250:3000'
 
 export const getBitacora = async () => {
   try {
