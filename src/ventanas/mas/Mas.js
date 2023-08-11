@@ -39,16 +39,16 @@ navigation.navigate('Bitácora');
     <View style = {styles.OptionsContainer} >
         {/* Iterar sobre el array de opciones */}
         {opciones.map((opcion, index) => (
-
-          <TouchableOpacity>
-          <ListItem key={index} bottomDivider>
+        <TouchableOpacity key={index}>
+          <ListItem bottomDivider>
             <Icon name="chevron-right" type="evilicon" color="#000" />
             <ListItem.Content>
-              <ListItem.Title>{opcion}</ListItem.Title>
-            </ListItem.Content>
-          </ListItem>
-          </TouchableOpacity>
-        ))}
+            <ListItem.Title>{opcion}</ListItem.Title>
+          </ListItem.Content>
+        </ListItem>
+      </TouchableOpacity>
+      ))}
+
 
         <View style={styles.bottomBar}>
         <TouchableOpacity style={styles.button} onPress={handleInicioPress}>

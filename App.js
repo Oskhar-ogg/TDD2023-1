@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons, AntDesign, FontAwesome } from '@expo/vector-icons';
 
+
 import Inicio from './src/ventanas/Inicio';
 import Calendario from './src/ventanas/agenda/Calendario';
 import Inventario from './src/ventanas/inventario/Inventario';

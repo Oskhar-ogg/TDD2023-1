@@ -22,6 +22,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+     "permissions": ["CAMERA", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE", "READ_INTERNAL_STORAGE", "WRITE_INTERNAL_STORAGE", "NETWORK_STATE", "ACCESS_NETWORK_STATE", "ACCESS_WIFI_STATE", "INTERNET", "VIBRATE", "RECORD_AUDIO", "MODIFY_AUDIO_SETTINGS", "USE_FULL_SCREEN_INTENT", "WAKE_LOCK", "FOREGROUND_SERVICE", "RECEIVE_BOOT_COMP"],
       "package": "com.oskharcc.tdd2023"
     },
     "web": {
@@ -29,9 +30,15 @@
     },
     "extra": {
       "eas": {
+<<<<<<< Updated upstream
         "projectId": "d92cbffb-b29d-4503-930e-fdfac3d55c30"
       }
+=======
+        "projectId": "d92cbffb-b29d-4503-930e-fdfac3d55c30",
+        "API": "http://34.0.52.250:3000" 
+>>>>>>> Stashed changes
     },
     "owner": "oskhar-cc"
   }
+}
 }

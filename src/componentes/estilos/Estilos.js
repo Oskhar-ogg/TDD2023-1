@@ -5,10 +5,11 @@ const screenHeight = Dimensions.get('window').height;
 
 const styles = {
   container: {
-    flex: 1,
     alignItems: 'center',
-    backgroundColor: '#022534',
+    backgroundColor: '#022534', // Cambia el color de fondo
+    height: '100%', // Ocupar el 100% del alto de la pantalla
   },
+  
   logo: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -46,9 +47,10 @@ const styles = {
   BottomContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ffffff',
+    alignItems: 'center', // Agrega espacio en la parte superior
+    backgroundColor: '#022534', // Cambia el color de fondo
   },
+  
   Text: {
     color: '#FFFFFF',
     fontSize: 24,
@@ -97,11 +99,13 @@ const styles = {
     alignItems: 'center',
     backgroundColor: '#08546c',
     height: 50,
-    position: 'absolute', // Agregar posición absoluta
-    bottom: 0, // Alinear en la parte inferior
-    left: 0, // Alinear en la izquierda
-    right: 0, // Alinear en la derecha
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    width: '100%', // Asegura que la barra ocupe todo el ancho
   },
+  
   button: {
     flex: 1,
     justifyContent: 'center',

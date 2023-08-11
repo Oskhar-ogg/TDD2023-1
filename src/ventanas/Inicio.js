@@ -45,7 +45,7 @@ const Tarjeta = () => {
   return (
     <ImageBackground source={require('./../imagenes/tarjeta.jpg')} style={styles.image}>
       <View style={styles.textContainer}>
-        <Text style={styles.TextCard}>BALANCE DEL MES</Text>
+        <Text style={styles.TextCard}>Balance General </Text>
         <Text style={styles.TextCardBottom}>Ingreso Mes = ${montoMes}</Text>
         <Text style={styles.TextCardBottom2}>Gasto Mes = $</Text>
         <Text style={styles.TextCard}>Total = ${montoTotal}</Text>
@@ -123,6 +123,8 @@ export default function Inicio() {
           color={'#08546c'}
           
         />
+        <Text style={styles.TextCard}></Text>
+        <Text style={styles.TextCard}></Text>
         </Card>
       </View>
       <View style={styles.bottomBar}>

@@ -3,6 +3,7 @@
     "version": ">= 3.13.2"
   },
   "build": {
+<<<<<<< Updated upstream
     "development": {
       "distribution": "internal",
       "android": {
@@ -19,5 +20,12 @@
   },
   "submit": {
     "production": {}
+=======
+    "production": {
+      "release": {}},
+      "env": {
+        "API_URL": "http://34.0.52.250:3000"
+      }
+    }
+>>>>>>> Stashed changes
   }
-}
