@@ -37,6 +37,7 @@ export default function AgregarCita () {
         agenda_motivo: '',
         agenda_hora: '00:00', // Formato HH:mm
         agenda_fecha: new Date().toISOString().split('T')[0], // Formato yyyy-mm-dd
+        tecnico_id: '1',
 
       });
       const handleInputChange = (key, value) => {

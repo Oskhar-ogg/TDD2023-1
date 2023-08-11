@@ -44,6 +44,7 @@ export default function AgregarBitacora() {
     bitacora_estado: '',
     bitacora_valor_cobrado: '0',
     bitacora_fecha: new Date().toISOString().split('T')[0], // Formato yyyy-mm-dd
+    tecnico_id: '1',
   });
   
   const handleInputChange = (key, value) => {

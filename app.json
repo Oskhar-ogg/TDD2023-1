@@ -12,7 +12,8 @@
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
-      "src/recursosvisuales/**/*", "src/imagenes/**/**/*"
+      "src/recursosvisuales/**/*", 
+      "src/imagenes/**/**/*"
     ],
     "ios": {
       "supportsTablet": true
@@ -22,7 +23,20 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-     "permissions": ["CAMERA", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE", "READ_INTERNAL_STORAGE", "WRITE_INTERNAL_STORAGE", "NETWORK_STATE", "ACCESS_NETWORK_STATE", "ACCESS_WIFI_STATE", "INTERNET", "VIBRATE", "RECORD_AUDIO", "MODIFY_AUDIO_SETTINGS", "USE_FULL_SCREEN_INTENT", "WAKE_LOCK", "FOREGROUND_SERVICE", "RECEIVE_BOOT_COMP"],
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.ACCESS_WIFI_STATE",
+        "android.permission.INTERNET",
+        "android.permission.VIBRATE",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.WAKE_LOCK",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.RECEIVE_BOOT_COMPLETED"
+      ],
       "package": "com.oskharcc.tdd2023"
     },
     "web": {
@@ -30,15 +44,11 @@
     },
     "extra": {
       "eas": {
-<<<<<<< Updated upstream
-        "projectId": "d92cbffb-b29d-4503-930e-fdfac3d55c30"
-      }
-=======
         "projectId": "d92cbffb-b29d-4503-930e-fdfac3d55c30",
-        "API": "http://34.0.52.250:3000" 
->>>>>>> Stashed changes
+        "API_URL": "http://34.0.52.250:3000"
+      }
     },
     "owner": "oskhar-cc"
   }
 }
-}
+
